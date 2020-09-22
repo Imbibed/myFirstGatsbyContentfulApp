@@ -5,7 +5,9 @@ import { Navigation } from "../components/navigation.js";
 function RootIndex(props){
   return (
     <div>
-      <Navigation></Navigation>
+      <Navigation>
+        <p>Index</p>
+      </Navigation>
     </div>
   )
 }

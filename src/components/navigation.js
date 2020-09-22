@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "gatsby"
 
-function Navigation (props){
+function Navigation ({children}){
 
   return(
     <div>
@@ -10,8 +10,9 @@ function Navigation (props){
         <li><Link to="/blog/">Blog</Link></li>
         <li><Link to="/julespage">JulesPage</Link></li>
       </ul>
+      {children}
     </div>
   )
 }
 
-export default Navigation;
+export default Navigation
