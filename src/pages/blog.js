@@ -1,23 +1,15 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-
-/*class BlogIndex extends React.Component {
-  render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const posts = get(this, 'props.data.allContentfulBlogPost.edges')
-
-    return (
-      <div>Blog</div>
-    )
-  }
-}*/
+import Navigation from '../components/navigation'
 
 function BlogIndex(props){
   return (
-    <div>Blog</div>
+    <div>
+      <Navigation>
+        <p>Blog</p>
+      </Navigation>
+    </div>
   )
 }
 
 export default BlogIndex
-
-
