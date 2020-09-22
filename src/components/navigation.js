@@ -1,7 +1,7 @@
 import React from "react";
-import {Link} from "gatsby"
+import { Link } from "gatsby"
 
-export default function Navigation (props){
+export default function Navigation (props) {
 
   return(
     <li>
