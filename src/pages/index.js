@@ -1,10 +1,12 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import {Navigation} from "./../components/navigation";
+import { Navigation } from "../components/navigation.js";
 
 function RootIndex(props){
   return (
-    <Navigation></Navigation>
+    <div>
+      <Navigation></Navigation>
+    </div>
   )
 }
 
