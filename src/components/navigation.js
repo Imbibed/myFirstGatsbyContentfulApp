@@ -8,7 +8,7 @@ export default function Navigation (props) {
       <ul>
         <li><Link to="/">HOME</Link></li>
         <li><Link to="/blog/">Blog</Link></li>
-        <li><Link to="/julespage">JulesPage</Link></li>
+        <li><Link to="/julespage/">JulesPage</Link></li>
       </ul>
       {children}
     </div>
