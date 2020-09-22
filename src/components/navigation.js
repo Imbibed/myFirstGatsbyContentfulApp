@@ -4,10 +4,13 @@ import { Link } from "gatsby"
 export default function Navigation (props) {
 
   return(
-    <li>
-      <ul><Link to="/">HOME</Link></ul>
-      <ul><Link to="/blog/">Blog</Link></ul>
-      <ul><Link to="/julespage">JulesPage</Link></ul>
-    </li>
+    <div>
+      <ul>
+        <li><Link to="/">HOME</Link></li>
+        <li><Link to="/blog/">Blog</Link></li>
+        <li><Link to="/julespage">JulesPage</Link></li>
+      </ul>
+      {children}
+    </div>
   )
 }

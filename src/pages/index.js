@@ -3,7 +3,11 @@ import Navigation from '../components/navigation'
 
 function RootIndex(props){
   return (
-    <Navigation></Navigation>
+    <div>
+      <Navigation>
+        <p>Index</p>
+      </Navigation>
+    </div>
   )
 }
 
