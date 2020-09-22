@@ -5,18 +5,19 @@ import Navigation from '../components/navigation'
 function JulesPage(props){
     console.log(props.data.allContentfulPlayerPage);
     const data = props.data;
+    let i = 0;
     const meleePlayerList = props.data.allContentfulPlayerPage.edges.map((edge) => 
-      <li key={edge.node.playerName}>{edge.node.playerName}</li>
+      <li key={edge.node.id}>{edge.node.playerName}</li>
     );
   return (
     <div>
       <Navigation>
-        <p>Welcome to Jules page</p>
+        <h1>Welcome to Jules page</h1>
+        <h2>Above, the SSBM best player in the world.</h2>
+        <ul>
+          {meleePlayerList}
+        </ul>
       </Navigation>
-      <h1>Above, the SSBM best player in the world.</h1>
-      <ul>
-        {meleePlayerList}
-      </ul>
     </div>
   )
 }
@@ -28,6 +29,7 @@ export const pageQuery = graphql`
     allContentfulPlayerPage {
       edges {
         node {
+          id
           playerName
         }
       }
