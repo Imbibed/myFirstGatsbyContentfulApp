@@ -9,7 +9,17 @@ exports.createPages = async ({graphql, actions, reporter}) => {
         edges {
           node {
             playerName
-            contentful_id
+            birthDay(formatString: "Do MMMM YYYY")
+            nationality
+            favoritesCharacter
+            playerImage {
+              title
+              description
+              file {
+                url
+              }
+              contentful_id
+            }
           }
         }
       }
@@ -25,7 +35,7 @@ exports.createPages = async ({graphql, actions, reporter}) => {
 
   // Create pages for each markdown file.
   const meleePlayerDetailsTemplate = path.resolve(`src/templates/template.js`)
-  
+
   result.data.allContentfulPlayerPage.edges.forEach(({ node }) => {
     const path = node.playerName+'-detailpage';
     createPage({
