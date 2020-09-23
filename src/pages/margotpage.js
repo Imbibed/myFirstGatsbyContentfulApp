@@ -19,6 +19,9 @@ const TitleCell = styled.th`
   background-color: #696969;
   color: #fff;
 `
+const LinkStyled = styled(Link)`
+  color: blue;
+`
 
 function MargotPage(props) {
   const pastries = props.data.allContentfulBakery.edges;
@@ -40,7 +43,7 @@ function MargotPage(props) {
           {pastries.map((pastry) =>
             <tr key={pastry.node.id}>
               <DataCell scope="row">
-                <Link to={'/'+ pastry.node.id}>{pastry.node.bakeryName}</Link>
+                <LinkStyled to={'/'+ pastry.node.id}>{pastry.node.bakeryName}</LinkStyled>
               </DataCell>
               <DataCell scope="row">{pastry.node.ingredients.map((ingredient) => ingredient + ' ')}</DataCell>
               <DataCell scope="row">{pastry.node.nationality}</DataCell>
@@ -60,7 +63,7 @@ export default MargotPage;
 
 export const query = graphql`
 query MargotQuery {
-  allContentfulBakery {
+  allContentfulBakery(filter: {node_locale: {eq: "en-US"}}) {
     edges {
       node {
         id
