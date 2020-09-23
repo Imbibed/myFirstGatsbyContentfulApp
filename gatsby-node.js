@@ -28,7 +28,7 @@ exports.createPages = async ({graphql, actions, reporter}) => {
           }
         }
       }
-      allContentfulBakery {
+      allContentfulBakery(filter: {node_locale: {eq: "en-US"}}) {
         edges {
           node {
             id
