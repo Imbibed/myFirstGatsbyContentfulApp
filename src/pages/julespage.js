@@ -1,18 +1,22 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import Navigation from '../components/navigation'
+import styled from 'styled-components'
 
 function JulesPage(props){
     //console.log(props.data.allContentfulPlayerPage);
-    const data = props.data;
-    let i = 0;
+    
+    const MainTitle = styled.h1`
+      text-align:center;
+    `;
+    
     const meleePlayerList = props.data.allContentfulPlayerPage.edges.map((edge) => 
       <li key={edge.node.id}><Link to={'/'+edge.node.playerName+'-detailpage/'}>{edge.node.playerName}</Link></li>
     );
   return (
     <div>
       <Navigation>
-        <h1>Welcome to Jules page</h1>
+        <MainTitle>Welcome to Jules page</MainTitle>
         <h2>Above, the SSBM best player in the world.</h2>
         <ul>
           {meleePlayerList}
