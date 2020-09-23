@@ -12,4 +12,3 @@ function RootIndex(props){
 }
 
 export default RootIndex
-
