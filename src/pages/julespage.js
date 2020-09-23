@@ -7,7 +7,7 @@ function JulesPage(props){
     const data = props.data;
     let i = 0;
     const meleePlayerList = props.data.allContentfulPlayerPage.edges.map((edge) => 
-      <li key={edge.node.id}>{edge.node.playerName}</li>
+      <li key={edge.node.id}><Link to={'/'+edge.node.playerName+'-detailpage/'}>{edge.node.playerName}</Link></li>
     );
   return (
     <div>

@@ -18,7 +18,6 @@ exports.createPages = async ({graphql, actions, reporter}) => {
               file {
                 url
               }
-              contentful_id
             }
           }
         }
@@ -42,8 +41,11 @@ exports.createPages = async ({graphql, actions, reporter}) => {
       path: '/'+path+'/',
       component: meleePlayerDetailsTemplate,
       context: {
-        contentfulId: node.contentful_id,
-        playerName: node.playerName
+        playerName: node.playerName,
+        birthday: node.birthDay,
+        nationality: node.nationality,
+        favoritesCharacter: node.favoritesCharacter,
+        playerImage: node.playerImage
       },
     })
   })
