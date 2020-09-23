@@ -3,7 +3,7 @@ import { Link } from 'gatsby'
 import Navigation from '../components/navigation'
 
 function JulesPage(props){
-    console.log(props.data.allContentfulPlayerPage);
+    //console.log(props.data.allContentfulPlayerPage);
     const data = props.data;
     let i = 0;
     const meleePlayerList = props.data.allContentfulPlayerPage.edges.map((edge) => 

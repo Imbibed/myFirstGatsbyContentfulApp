@@ -17,6 +17,12 @@ exports.createPages = async ({graphql, actions, reporter}) => {
               description
               file {
                 url
+                details {
+                  image {
+                    height
+                    width
+                  }
+                }
               }
             }
           }
