@@ -28,6 +28,23 @@ exports.createPages = async ({graphql, actions, reporter}) => {
           }
         }
       }
+      allContentfulBakery {
+        edges {
+          node {
+            id
+            bakeryName
+            ingredients
+            nationality
+            isCold
+            picture {
+              file {
+                url
+                fileName
+              }
+            }
+          }
+        }
+      }
     }
   `
   )
@@ -55,4 +72,21 @@ exports.createPages = async ({graphql, actions, reporter}) => {
       },
     })
   })
+
+  // Create pages of bakery
+  result.data.allContentfulBakery.edges.forEach(({ node }) => {
+    createPage({
+      path: node.id,
+      component: path.resolve('./src/templates/margottemplate.js'),
+      context: {
+        bakeryName: node.bakeryName,
+        ingredients: node.ingredients,
+        nationality: node.nationality,
+        isCold: node.isCold,
+        picture: node.picture,
+      },
+    })
+  })
+
+
 }
