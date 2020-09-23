@@ -14,23 +14,10 @@ const Table = styled.table`
 const TitleCell = styled.th`
   background-color: #696969;
   color: #fff;
-`;
-const Line = styled.tr`
-  > td {
-    text-align: center;
-    border: 1px solid rgb(190, 190, 190);
-    padding: 10px;
-    
-  }
-  ${TitleCell} {
-    text-align: center;
-    border: 1px solid rgb(190, 190, 190);
-    padding: 10px;
-  }
-`;
+`
 const LinkStyled = styled(Link)`
   color: blue;
-`;
+`
 
 function MargotPage(props) {
   const pastries = props.data.allContentfulBakery.edges;
