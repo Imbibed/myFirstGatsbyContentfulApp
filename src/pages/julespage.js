@@ -29,7 +29,6 @@ const JulesPage = (props) => {
       <Link to={'/'+edge.node.playerName+'-detailpage/'}>{edge.node.playerName}</Link>
     </p>
   );
-
   return (
     <>
       <MainTitle>Welcome to Jules page</MainTitle>
