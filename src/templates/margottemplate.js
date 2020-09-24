@@ -1,9 +1,7 @@
 import React from 'react'
-import { graphql } from 'gatsby'
 import Navigation from '../components/Navigation'
 
 function MargotTemplate({ pageContext }) {
-  console.log(pageContext.ingredients)
   return (
     <Navigation>
       <h2>{pageContext.bakeryName}</h2>
