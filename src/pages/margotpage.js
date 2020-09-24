@@ -1,7 +1,7 @@
 import { graphql, Link } from 'gatsby';
 import React from 'react'
 import styled from 'styled-components'
-import Navigation from '../components/navigation'
+import Navigation from '../components/Navigation'
 
 const DataCell = styled.td`
   text-align: center;
