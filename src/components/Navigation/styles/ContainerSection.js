@@ -11,5 +11,5 @@ const fadein = keyframes`
 `;
 
 export const ContainerSection = styled.section`
-  animation: ${fadein} 1s;
+  animation: ${fadein} 0.5s;
 `;
