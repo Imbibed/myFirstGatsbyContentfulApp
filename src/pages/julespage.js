@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import { Link, graphql } from 'gatsby'
-import Navigation from '../components/Navigation'
 import styled from 'styled-components'
 import { map } from 'lodash'
 
@@ -29,7 +28,6 @@ const JulesPage = (props) => {
       <Link to={'/'+edge.node.playerName+'-detailpage/'}>{edge.node.playerName}</Link>
     </li>
   );
-
   return (
     <>
       <MainTitle>Welcome to Jules page</MainTitle>
