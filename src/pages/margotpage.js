@@ -5,6 +5,7 @@ import Navigation from '../components/navigation'
 
 const DataCell = styled.td`
   background-color: ${props => props.grey ? "#eee" : "white"};
+  font-style: ${props => props.fontStyle || "normal"};
 `;
 const Table = styled.table`
   border-collapse: collapse;
@@ -50,11 +51,11 @@ function MargotPage(props) {
         <tbody>
           {pastries.map((pastry) =>
             <Line key={pastry.node.id}>
-              <DataCell scope="row">
+              <td as={DataCell} scope="row">
                 <LinkStyled to={'/'+ pastry.node.id}>{pastry.node.bakeryName}</LinkStyled>
-              </DataCell>
+              </td>
               <DataCell grey scope="row">{pastry.node.ingredients.map((ingredient) => ingredient + ' ')}</DataCell>
-              <DataCell scope="row">{pastry.node.nationality}</DataCell>
+              <DataCell scope="row" fontStyle="italic">{pastry.node.nationality}</DataCell>
               <DataCell grey scope="row">{pastry.node.isCold ? "Cold" : "Warm"}</DataCell>
               <DataCell scope="row">
                 <img src={pastry.node.picture.file.url} alt={pastry.node.picture.file.fileName} height="100px" width="150px"/>
