@@ -3,6 +3,9 @@ import React from 'react'
 import styled from 'styled-components'
 import Navigation from '../components/Navigation'
 
+const DataCell = styled.td`
+  background-color: ${props => props.grey ? "#eee" : "white"};
+`;
 const Table = styled.table`
   border-collapse: collapse;
   border: 2px solid rgb(200, 200, 200);
@@ -10,23 +13,23 @@ const Table = styled.table`
 const TitleCell = styled.th`
   background-color: #696969;
   color: #fff;
-`
+`;
 const Line = styled.tr`
   > td {
     text-align: center;
     border: 1px solid rgb(190, 190, 190);
     padding: 10px;
+    
   }
   ${TitleCell} {
     text-align: center;
     border: 1px solid rgb(190, 190, 190);
     padding: 10px;
   }
-
-`
+`;
 const LinkStyled = styled(Link)`
   color: blue;
-`
+`;
 
 function MargotPage(props) {
   const pastries = props.data.allContentfulBakery.edges;
