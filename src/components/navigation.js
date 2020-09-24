@@ -2,13 +2,11 @@ import React from "react";
 import { Link } from "gatsby"
 import styled from 'styled-components'
 
-export default function Navigation ({children}, props) {
-
-  console.log(props);
+export default function Navigation ({children}) {
 
   const CustomSection = styled.section`
     display:flex;
-    justify-content:${props.justifyContent};
+    justify-content:center;
     margin:1.5rem 0rem 1.5rem 0rem;
     border: 1px solid black;
   `;
