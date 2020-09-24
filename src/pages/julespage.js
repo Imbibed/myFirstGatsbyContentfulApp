@@ -15,7 +15,7 @@ function JulesPage(props){
     );
   return (
     <div>
-      <Navigation justifyContent="center">
+      <Navigation>
         <MainTitle>Welcome to Jules page</MainTitle>
         <h2>Above, the SSBM best player in the world.</h2>
         <ul>
