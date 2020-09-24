@@ -1,6 +1,5 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import Navigation from '../components/Navigation'
 
 function Template({pageContext}){
   //console.log(pageContext.playerImage);
