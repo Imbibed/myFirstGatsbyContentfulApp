@@ -5,6 +5,7 @@ import Navigation from '../components/Navigation'
 
 const DataCell = styled.td`
   background-color: ${props => props.grey ? "#eee" : "white"};
+  font-style: ${props => props.fontStyle || "normal"};
 `;
 const Table = styled.table`
   border-collapse: collapse;
