@@ -3,21 +3,26 @@ import React from 'react'
 import styled from 'styled-components'
 import Navigation from '../components/Navigation'
 
-const DataCell = styled.td`
-  text-align: center;
-  border: 1px solid rgb(190, 190, 190);
-  padding: 10px;
-`
 const Table = styled.table`
   border-collapse: collapse;
   border: 2px solid rgb(200, 200, 200);
 `
 const TitleCell = styled.th`
-  text-align: center;
-  border: 1px solid rgb(190, 190, 190);
-  padding: 10px;
   background-color: #696969;
   color: #fff;
+`
+const Line = styled.tr`
+  > td {
+    text-align: center;
+    border: 1px solid rgb(190, 190, 190);
+    padding: 10px;
+  }
+  ${TitleCell} {
+    text-align: center;
+    border: 1px solid rgb(190, 190, 190);
+    padding: 10px;
+  }
+
 `
 const LinkStyled = styled(Link)`
   color: blue;
@@ -31,27 +36,27 @@ function MargotPage(props) {
       <h2>La page de Margot !</h2>
       <Table>
         <thead>
-          <tr key="head">
+          <Line key="head">
             <TitleCell scope="col">Name</TitleCell>
             <TitleCell scope="col">Ingredients</TitleCell>
             <TitleCell scope="col">Nationality</TitleCell>
             <TitleCell scope="col">Temperature</TitleCell>
             <TitleCell scope="col">Picture</TitleCell>
-          </tr>
+          </Line>
         </thead>
         <tbody>
           {pastries.map((pastry) =>
-            <tr key={pastry.node.id}>
-              <DataCell scope="row">
+            <Line key={pastry.node.id}>
+              <td scope="row">
                 <LinkStyled to={'/'+ pastry.node.id}>{pastry.node.bakeryName}</LinkStyled>
-              </DataCell>
-              <DataCell scope="row">{pastry.node.ingredients.map((ingredient) => ingredient + ' ')}</DataCell>
-              <DataCell scope="row">{pastry.node.nationality}</DataCell>
-              <DataCell scope="row">{pastry.node.isCold ? "Cold" : "Warm"}</DataCell>
-              <DataCell scope="row">
+              </td>
+              <td scope="row">{pastry.node.ingredients.map((ingredient) => ingredient + ' ')}</td>
+              <td scope="row">{pastry.node.nationality}</td>
+              <td scope="row">{pastry.node.isCold ? "Cold" : "Warm"}</td>
+              <td scope="row">
                 <img src={pastry.node.picture.file.url} alt={pastry.node.picture.file.fileName} height="100px" width="150px"/>
-              </DataCell>
-            </tr>
+              </td>
+            </Line>
           )}
         </tbody>
       </Table>
