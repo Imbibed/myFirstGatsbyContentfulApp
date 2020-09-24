@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import Navigation from '../components/Navigation'
+import Navigation from '../components/Navigation/index'
 
 function BlogIndex(props){
   return (

@@ -5,7 +5,7 @@ exports.createPages = async ({graphql, actions, reporter}) => {
 
   const result = await graphql(`
     query MyQuery {
-      allContentfulPlayerPage {
+      allContentfulPlayerPage(filter: {node_locale: {eq: "en-US"}}) {
         edges {
           node {
             playerName
@@ -28,7 +28,7 @@ exports.createPages = async ({graphql, actions, reporter}) => {
           }
         }
       }
-      allContentfulBakery {
+      allContentfulBakery(filter: {node_locale: {eq: "en-US"}}) {
         edges {
           node {
             id
