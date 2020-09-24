@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import Navigation from '../components/navigation'
+import Navigation from '../components/Navigation'
 import styled from 'styled-components'
 
 function JulesPage(props){

@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import Navigation from '../components/navigation'
+import Navigation from '../components/Navigation'
 
 function MargotTemplate({ pageContext }) {
   console.log(pageContext.ingredients)
