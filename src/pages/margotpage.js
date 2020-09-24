@@ -3,30 +3,33 @@ import React from 'react'
 import styled from 'styled-components'
 import Navigation from '../components/navigation'
 
+const DataCell = styled.td`
+  background-color: ${props => props.grey ? "#eee" : "white"};
+`;
 const Table = styled.table`
   border-collapse: collapse;
   border: 2px solid rgb(200, 200, 200);
-`
+`;
 const TitleCell = styled.th`
   background-color: #696969;
   color: #fff;
-`
+`;
 const Line = styled.tr`
   > td {
     text-align: center;
     border: 1px solid rgb(190, 190, 190);
     padding: 10px;
+    
   }
   ${TitleCell} {
     text-align: center;
     border: 1px solid rgb(190, 190, 190);
     padding: 10px;
   }
-
-`
+`;
 const LinkStyled = styled(Link)`
   color: blue;
-`
+`;
 
 function MargotPage(props) {
   const pastries = props.data.allContentfulBakery.edges;
@@ -47,15 +50,15 @@ function MargotPage(props) {
         <tbody>
           {pastries.map((pastry) =>
             <Line key={pastry.node.id}>
-              <td scope="row">
+              <DataCell scope="row">
                 <LinkStyled to={'/'+ pastry.node.id}>{pastry.node.bakeryName}</LinkStyled>
-              </td>
-              <td scope="row">{pastry.node.ingredients.map((ingredient) => ingredient + ' ')}</td>
-              <td scope="row">{pastry.node.nationality}</td>
-              <td scope="row">{pastry.node.isCold ? "Cold" : "Warm"}</td>
-              <td scope="row">
+              </DataCell>
+              <DataCell grey scope="row">{pastry.node.ingredients.map((ingredient) => ingredient + ' ')}</DataCell>
+              <DataCell scope="row">{pastry.node.nationality}</DataCell>
+              <DataCell grey scope="row">{pastry.node.isCold ? "Cold" : "Warm"}</DataCell>
+              <DataCell scope="row">
                 <img src={pastry.node.picture.file.url} alt={pastry.node.picture.file.fileName} height="100px" width="150px"/>
-              </td>
+              </DataCell>
             </Line>
           )}
         </tbody>
