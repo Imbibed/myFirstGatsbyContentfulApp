@@ -3,9 +3,9 @@ import { graphql } from 'gatsby'
 import Navigation from '../components/Navigation'
 
 function MargotTemplate({ pageContext }) {
-  console.log(pageContext.ingredients)
+  //console.log(pageContext.ingredients)
   return (
-    <Navigation>
+    <>
       <h2>{pageContext.bakeryName}</h2>
       <h4>General information : </h4>
       <img src={pageContext.picture.file.url} alt={pageContext.picture.file.fileName} />
@@ -17,7 +17,7 @@ function MargotTemplate({ pageContext }) {
         <li key={ingredient}>{ingredient}</li>
         )}
       </ul>
-    </Navigation>
+    </>
   )
 }
 

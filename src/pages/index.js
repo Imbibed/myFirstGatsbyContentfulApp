@@ -4,11 +4,9 @@ import styled from 'styled-components'
 
 function RootIndex(props){
   return (
-    <div>
-      <Navigation>
-        <p>Index</p>
-      </Navigation>
-    </div>
+    <>
+      <p>Index</p>
+    </>
   )
 }
 

@@ -6,7 +6,7 @@ import {CustomSection} from '../Navigation/styles/CustomSection'
 import {ContainerSection} from '../Navigation/styles/ContainerSection'
 
 const Navigation =  ({children}) => 
-  <div>
+  <>
     <CustomSection>
       <CustomLink to="/">Home</CustomLink>
       <CustomLink to="/blog/">Blog</CustomLink>
@@ -16,6 +16,6 @@ const Navigation =  ({children}) =>
     <ContainerSection>
       {children}
     </ContainerSection>
-  </div>
+  </>
   
 export default Navigation;
