@@ -1,8 +1,14 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
+import Proptypes from "prop-types";
 
 const DataCell = styled.td`
-  background-color: ${props => props.grey ? "#eee" : "white"};
-  font-style: ${props => props.fontStyle || "normal"};
+  background-color: ${({ grey }) => grey ? "#eee" : "white"};
+  font-style: ${({ fontStyle }) => fontStyle || "normal"};
 `;
+
+DataCell.propTypes = {
+  grey: Proptypes.bool,
+  fontStyle: Proptypes.string
+}
 
 export default DataCell;
