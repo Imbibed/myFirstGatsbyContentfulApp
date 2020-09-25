@@ -24,7 +24,7 @@ function MargotPage(props) {
   const pastries = props.data.allContentfulBakery.edges;
 
   return (
-    <Navigation>
+    <>
       <h2>La page de Margot !</h2>
       <Table>
         <thead>
@@ -52,7 +52,7 @@ function MargotPage(props) {
           )}
         </tbody>
       </Table>
-    </Navigation>
+    </>
   )
 }
 

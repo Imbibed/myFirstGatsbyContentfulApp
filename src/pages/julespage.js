@@ -1,21 +1,34 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { Link } from 'gatsby'
 import Navigation from '../components/Navigation'
 import styled from 'styled-components'
-import{ map } from 'lodash'
+import { map } from 'lodash'
 
 const JulesPage = (props) => { 
   //console.log(props.data.allContentfulPlayerPage);
+
+  const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    console.log("Init JulesPage");
+    return () => {
+      console.log("Remove component from the page");
+    }
+  }, [])  //  called one time when component loaded, return function will be called when page change (remove component)
+
+  useEffect(() => {
+    console.log("Increment done");
+  }, [count]) //  called every times where count change
     
   const MainTitle = styled.h1`
     text-align:center;
   `;
 
-  const meleePlayerList = map(props.data.allContentfulPlayerPage.edges, edge => {
-    <li key={edge.node.id}>
+  const meleePlayerList = map(props.data.allContentfulPlayerPage.edges, edge => 
+    <p key={edge.node.id}>
       <Link to={'/'+edge.node.playerName+'-detailpage/'}>{edge.node.playerName}</Link>
-    </li>
-  });
+    </p>
+  );
 
   return (
     <>
@@ -24,6 +37,10 @@ const JulesPage = (props) => {
       <ul>
         {meleePlayerList}
       </ul>
+      <h3>
+        {count}
+      </h3>
+      <button onClick={() => setCount(count+1)}>Increment</button>
     </>
   )
 }
