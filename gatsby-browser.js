@@ -1,4 +1,3 @@
-
 import React from "react";
 import theme from './src/theme'
 import { mailjet, ThemePartialProvider } from "mailjet-react-components";
