@@ -10,9 +10,9 @@ const JulesPage = (props) => {
   const [count, setCount] = useState(0)
 
   useEffect(() => {
-    //console.log("Init JulesPage");
+    console.log("Init JulesPage");
     return () => {
-      //console.log("Remove component from the page");
+      console.log("Remove component from the page");
     }
   }, [])  //  called one time when component loaded, return function will be called when page change (remove component)
 
@@ -29,6 +29,7 @@ const JulesPage = (props) => {
       <Link to={'/'+edge.node.playerName+'-detailpage/'}>{edge.node.playerName}</Link>
     </li>
   );
+  
   return (
     <>
       <MainTitle>Welcome to Jules page</MainTitle>
