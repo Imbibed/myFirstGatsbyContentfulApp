@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { map } from 'lodash'
 
 const JulesPage = (props) => { 
-  console.log(props.data.allContentfulPlayerPage);
+  //console.log(props.data.allContentfulPlayerPage);
 
   const [count, setCount] = useState(0)
 

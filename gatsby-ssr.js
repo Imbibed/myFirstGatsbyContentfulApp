@@ -9,3 +9,11 @@ export const wrapPageElement = ({element}) => <ThemePartialProvider theme={mailj
     {element}
   </Navigation>
 </ThemePartialProvider>
+
+const BodyComponents = [
+  <body style={{margin:0}}></body>
+]
+
+export const onRenderBody = ({setPreBodyComponents}) => {
+  setPreBodyComponents(BodyComponents);
+}
