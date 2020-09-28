@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { map } from 'lodash'
 
 const JulesPage = (props) => { 
-  //console.log(props.data.allContentfulPlayerPage);
+  console.log(props.data.allContentfulPlayerPage);
 
   const [count, setCount] = useState(0)
 
@@ -28,6 +28,7 @@ const JulesPage = (props) => {
       <Link to={'/'+edge.node.playerName+'-detailpage/'}>{edge.node.playerName}</Link>
     </li>
   );
+  
   return (
     <>
       <MainTitle>Welcome to Jules page</MainTitle>
