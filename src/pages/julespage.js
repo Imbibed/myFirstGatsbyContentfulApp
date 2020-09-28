@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Link } from 'gatsby'
+import { Link, graphql } from 'gatsby'
 import Navigation from '../components/Navigation'
 import styled from 'styled-components'
 import { map } from 'lodash'
@@ -10,14 +10,14 @@ const JulesPage = (props) => {
   const [count, setCount] = useState(0)
 
   useEffect(() => {
-    console.log("Init JulesPage");
+    //console.log("Init JulesPage");
     return () => {
-      console.log("Remove component from the page");
+      //console.log("Remove component from the page");
     }
   }, [])  //  called one time when component loaded, return function will be called when page change (remove component)
 
   useEffect(() => {
-    console.log("Increment done");
+    //console.log("Increment done");
   }, [count]) //  called every times where count change
     
   const MainTitle = styled.h1`
