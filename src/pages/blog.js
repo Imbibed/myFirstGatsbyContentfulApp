@@ -11,7 +11,6 @@ const AlbumsContainer = styled.section`
   flex-wrap:wrap;
   justify-content:space-between;
   margin:5%;
-  border: solid;
 `;
 
 const MainTitle = styled.h1`
@@ -19,21 +18,19 @@ const MainTitle = styled.h1`
 `;
 
 const BlogIndex = (props) => {
-  console.log(props.data);
+  //console.log(props.data);
 
   const albumsList = map(props.data.allContentfulAlbum.edges, edges => {
-    let i = 0;
+    let teaseFile = edges.node.photos[0];
 
     return(
       <AlbumSticker 
-      key={edges.node.id} 
-      name={edges.node.albumName} 
-      imageUrl=""
-    />
+        key={edges.node.id} 
+        name={edges.node.albumName} 
+        teaseFile={teaseFile}
+      />
     )
-  }
-    
-  );
+  });
 
   return(
     <section>
@@ -56,6 +53,12 @@ export const pageQuery = graphql`
           photos {
             file {
               url
+              details {
+                image {
+                  height
+                  width
+                }
+              }
             }
           }
           albumName
