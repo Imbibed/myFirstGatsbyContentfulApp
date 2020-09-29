@@ -1,3 +1,4 @@
+const path = require('path')
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV || 'development'}`,
 })
@@ -37,6 +38,28 @@ module.exports = {
     {
       resolve: 'gatsby-source-contentful',
       options: contentfulConfig,
+    },
+    {
+      resolve: `gatsby-plugin-alias-imports`,
+      options: {
+        alias: {
+          // Remove when module fix is on mailjet-react-compononents develop branch
+          'mailjet-react-components': path.resolve(
+            __dirname,
+            './node_modules/mailjet-react-components/build'
+          ),
+          'mailjet-react-components/icons': path.resolve(
+            __dirname,
+            './node_modules/mailjet-react-components/build/icons'
+          ),
+          react: path.join(__dirname, './node_modules/react'),
+          'react-dom': path.join(__dirname, './node_modules/react-dom'),
+          'styled-components': path.join(
+            __dirname,
+            './node_modules/styled-components'
+          ),
+        },
+      },
     },
   ],
 }
