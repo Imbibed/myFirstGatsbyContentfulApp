@@ -6,7 +6,6 @@ import { Button } from "mailjet-react-components"
 
 function Navigation ({ children }) {
   const [darkMode, setDarkMode] = useDarkMode();
-
   return (
     <div>
       <CenteredList>
