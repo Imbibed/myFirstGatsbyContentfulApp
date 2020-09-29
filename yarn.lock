@@ -9612,9 +9612,9 @@ magic-string@^0.25.3:
   dependencies:
     sourcemap-codec "^1.4.4"
 
-"mailjet-react-components@git+ssh://git@gitlab.mailjet.tech/front/react-components.git#dac499cc":
+"mailjet-react-components@git+ssh://git@gitlab.mailjet.tech:front/react-components.git#dac499cc":
   version "5.49.0"
-  resolved "git+ssh://git@gitlab.mailjet.tech/front/react-components.git#dac499ccab52fb567285348ac5017c2647aa34d8"
+  resolved "git+ssh://git@gitlab.mailjet.tech:front/react-components.git#dac499ccab52fb567285348ac5017c2647aa34d8"
   dependencies:
     classnames "^2.2.6"
     codemirror "^5.44.0"
