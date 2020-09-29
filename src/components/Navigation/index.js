@@ -15,12 +15,9 @@ function Navigation ({ children }) {
         <ListElement><CustomNavigationLink to="/julespage/">JulesPage</CustomNavigationLink></ListElement>
         <ListElement><CustomNavigationLink color='#2eaeab' to="/margotpage/">MargotPage</CustomNavigationLink></ListElement>
       </CenteredList>
-<<<<<<< HEAD
       <Button onClick={() => setDarkMode(!darkMode)}>
         DarkMode moins moche
       </Button>  
-=======
->>>>>>> 871ac14a85db6e70de7f64ca342cbd3f71d7bdbf
       <button onClick={() => setDarkMode(!darkMode)}>DarkMode moche</button>
       {children}
     </div>
