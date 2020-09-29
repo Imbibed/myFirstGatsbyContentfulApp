@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import CenteredList from "./styles/List";
 import ListElement from "./styles/ListElement";
 import { CustomNavigationLink } from "../../styles"
+import { Button } from "mailjet-react-components"
 
 function Navigation ({ children }) {
   const [darkMode, setDarkMode] = useDarkMode();
@@ -14,6 +15,9 @@ function Navigation ({ children }) {
         <ListElement><CustomNavigationLink to="/julespage/">JulesPage</CustomNavigationLink></ListElement>
         <ListElement><CustomNavigationLink color='#2eaeab' to="/margotpage/">MargotPage</CustomNavigationLink></ListElement>
       </CenteredList>
+      <Button onClick={() => setDarkMode(!darkMode)}>
+        DarkMode moins moche
+      </Button>  
       <button onClick={() => setDarkMode(!darkMode)}>DarkMode moche</button>
       {children}
     </div>
