@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "gatsby"
 import styled from 'styled-components'
-import {CustomLink} from '../Navigation/styles/CustomLink'
-import {CustomSection} from '../Navigation/styles/CustomSection'
-import {ContainerSection} from '../Navigation/styles/ContainerSection'
+import {CustomLink} from './styles/CustomLink'
+import {CustomSection} from './styles/CustomSection'
+import {ContainerSection} from './styles/ContainerSection'
 
 const Navigation =  ({children}) => 
   <>

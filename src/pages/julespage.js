@@ -3,6 +3,10 @@ import { Link, graphql } from 'gatsby'
 import styled from 'styled-components'
 import { map } from 'lodash'
 
+const MainTitle = styled.h1`
+  text-align:center;
+`;
+
 const JulesPage = (props) => { 
   //console.log(props.data.allContentfulPlayerPage);
 
@@ -18,10 +22,6 @@ const JulesPage = (props) => {
   useEffect(() => {
     //console.log("Increment done");
   }, [count]) //  called every times where count change
-    
-  const MainTitle = styled.h1`
-    text-align:center;
-  `;
 
   const meleePlayerList = map(props.data.allContentfulPlayerPage.edges, edge => 
     <li key={edge.node.id}>
