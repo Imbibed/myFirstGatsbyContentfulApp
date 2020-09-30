@@ -12,6 +12,7 @@ const Navigation =  ({children}) =>
       <CustomLink to="/blog/">Blog</CustomLink>
       <CustomLink to="/julespage/">JulesPage</CustomLink>
       <CustomLink to="/margotpage/">MargotPage</CustomLink>
+      <CustomLink to="/mailjet/">Mailjet</CustomLink>
     </CustomSection>
     <ContainerSection>
       {children}

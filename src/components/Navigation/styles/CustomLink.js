@@ -5,7 +5,7 @@ export const CustomLink = styled(Link)`
   color:black;
   text-decoration:none;
   margin: 0.5rem;
-  transition-duration: 0.3s;
+  transition-duration: 0.5s;
   &:hover{
     transform: scale(1.1);
   }

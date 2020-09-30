@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import Navigation from '../components/Navigation/index'
 import styled from 'styled-components'
 import { map } from 'lodash'
 import AlbumSticker from '../components/AlbumSticker/index'
@@ -33,12 +32,12 @@ const BlogIndex = (props) => {
   });
 
   return(
-    <section>
+    <>
       <MainTitle>Here albums photo</MainTitle>
       <AlbumsContainer>
         {albumsList}
       </AlbumsContainer>
-    </section>
+    </>
   )
 }
   
