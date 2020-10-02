@@ -6,13 +6,14 @@ import MailjetNavigation from '../components/MailjetNavigation'
 
 const mailjet = (props) => {
   const mailjetLogo = props.data.allContentfulMailjetLogo.edges[0];
-  //console.log(mailjetLogo.href);
-  //console.log(mailjetLogo.node.logo);
+  const leftSideContent = props.data.allContentfulNavbarLeftPart.edges[0].node.content;
+  //console.log(leftSideContent);
   return(
     <>
       <MailjetNavigation 
         goTo={mailjetLogo.node.href} 
         pictureUrl={mailjetLogo.node.logo.file.url}
+        leftSideContent={leftSideContent}
       />
     </>
   )
@@ -29,6 +30,31 @@ export const pageQuery = graphql`
           logo {
             file {
               url
+            }
+          }
+        }
+      }
+    }
+    allContentfulNavbarLeftPart {
+      edges {
+        node {
+          label
+          content {
+            ... on ContentfulNavBarButton {
+              id
+              label
+              path
+            }
+            ... on ContentfulNavBarDropDown {
+              id
+              label
+              buttons {
+                ... on ContentfulNavBarButton {
+                  id
+                  label
+                  path
+                }
+              }
             }
           }
         }
