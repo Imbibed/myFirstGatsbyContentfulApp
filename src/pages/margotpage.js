@@ -1,6 +1,7 @@
 import { graphql, Link } from 'gatsby';
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
+import { map } from 'lodash';
 
 const DataCell = styled.td`
   text-align: center;
@@ -36,16 +37,16 @@ function MargotPage(props) {
           </tr>
         </thead>
         <tbody>
-          {pastries.map((pastry) =>
-            <tr key={pastry.node.id}>
+          {map(pastries, ({node: {id, bakeryName, ingredients, nationality, isCold, picture}}) =>
+            <tr key={id}>
               <DataCell scope="row">
-                <Link to={'/'+ pastry.node.id}>{pastry.node.bakeryName}</Link>
+                <Link to={'/'+ id}>{bakeryName}</Link>
               </DataCell>
-              <DataCell scope="row">{pastry.node.ingredients.map((ingredient) => ingredient + ' ')}</DataCell>
-              <DataCell scope="row">{pastry.node.nationality}</DataCell>
-              <DataCell scope="row">{pastry.node.isCold ? "Cold" : "Warm"}</DataCell>
+              <DataCell scope="row">{ingredients.map((ingredient) => ingredient + ' ')}</DataCell>
+              <DataCell scope="row">{nationality}</DataCell>
+              <DataCell scope="row">{isCold ? "Cold" : "Warm"}</DataCell>
               <DataCell scope="row">
-                <img src={pastry.node.picture.file.url} alt={pastry.node.picture.file.fileName} height="100px" width="150px"/>
+                <img src={picture.image.file.url} alt={picture.image.alt} height="100px" width="150px"/>
               </DataCell>
             </tr>
           )}
@@ -59,7 +60,7 @@ export default MargotPage;
 
 export const query = graphql`
 query MargotQuery {
-  allContentfulBakery {
+  allContentfulBakery(filter: {node_locale: {eq: "en-US"}}) {
     edges {
       node {
         id
@@ -68,10 +69,12 @@ query MargotQuery {
         nationality
         isCold
         picture {
-          file {
-            url
-            fileName
+          image {
+            file {
+              url
+            }
           }
+          alt
         }
       }
     }
