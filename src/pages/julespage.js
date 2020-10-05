@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { Link, graphql } from 'gatsby'
 import styled from 'styled-components'
 import { map } from 'lodash'
+import { injectIntl } from "gatsby-plugin-intl"
 
 const MainTitle = styled.h1`
   text-align:center;
@@ -31,7 +32,7 @@ const JulesPage = (props) => {
 
   return (
     <>
-      <MainTitle>Welcome to Jules page</MainTitle>
+      <MainTitle>{props.intl.formatMessage({id: "julespage_title"})}</MainTitle>
       <h2>Above, the SSBM best player in the world.</h2>
       <ul>
         {meleePlayerList}
@@ -44,7 +45,7 @@ const JulesPage = (props) => {
   )
 }
 
-export default JulesPage;
+export default injectIntl(JulesPage);
 
 export const pageQuery = graphql`
   query MyQuery {

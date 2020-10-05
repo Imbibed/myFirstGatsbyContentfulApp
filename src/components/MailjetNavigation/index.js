@@ -9,6 +9,7 @@ import {Button} from 'mailjet-react-components'
 import {ExtMJButton, ExtMJMenuButton} from './styles/MJComponent'
 import {Menu} from 'mailjet-react-components'
 import { map } from 'lodash'
+import TranslationTools from '../../Utils/TranslationService'
 
 //  To put in an other file....
 var CONTENT_TYPE = {
@@ -36,6 +37,12 @@ const MailjetNavigation = (props) => {
               </ExtMJButton>)
     }
   })
+
+  const translationOption = map(TranslationTools.table, val => {
+    return(
+      <option value={val.key}>{val.value}</option>
+    )
+  })
   
   return(
     <MailjetNavigationContainer>
@@ -47,7 +54,9 @@ const MailjetNavigation = (props) => {
           {leftPartContent}
         </LeftPart>
         <RightPart>
-          
+          {/* <select>
+            {translationOption}
+          </select> */}
         </RightPart>
       </NavContainer>
     </MailjetNavigationContainer>
