@@ -13,11 +13,11 @@ function Navigation ({ children }) {
         <ListElement><CustomNavigationLink color='red' to="/blog/">Blog</CustomNavigationLink></ListElement>
         <ListElement><CustomNavigationLink to="/julespage/">JulesPage</CustomNavigationLink></ListElement>
         <ListElement><CustomNavigationLink color='#2eaeab' to="/margotpage/">MargotPage</CustomNavigationLink></ListElement>
+        <ListElement><CustomNavigationLink to="/richpage/">RichPage</CustomNavigationLink></ListElement>
       </CenteredList>
-      <Button onClick={() => setDarkMode(!darkMode)}>
-        DarkMode moins moche
-      </Button>  
-      <button onClick={() => setDarkMode(!darkMode)}>DarkMode moche</button>
+      <Button onClick={() => setDarkMode(!darkMode)} mode="secondary" neutral>
+        DarkMode moche
+      </Button>
       {children}
     </div>
   );
