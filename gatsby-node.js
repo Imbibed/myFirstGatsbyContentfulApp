@@ -38,10 +38,12 @@ exports.createPages = async ({graphql, actions, reporter}) => {
             nationality
             isCold
             picture {
-              file {
-                url
-                fileName
+              image {
+                file {
+                  url
+                }
               }
+              alt
             }
           }
         }
