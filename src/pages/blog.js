@@ -17,11 +17,10 @@ const MainTitle = styled.h1`
 `;
 
 const BlogIndex = (props) => {
-  //console.log(props.data);
+  //console.log(props.data.allContentfulAlbum.edges);
 
   const albumsList = map(props.data.allContentfulAlbum.edges, edges => {
     let teaseFile = edges.node.photos[0];
-
     return(
       <AlbumSticker 
         key={edges.node.id} 

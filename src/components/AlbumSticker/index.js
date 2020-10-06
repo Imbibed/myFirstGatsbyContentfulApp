@@ -5,11 +5,15 @@ import {AlbumName} from './styles/AlbumName'
 import {TeaseImage} from './styles/TeaseImage'
 
 const AlbumSticker = (props) => {
-
+  console.log(props)
+  let url = "";
+  if(props.teaseFile.file){
+    url = props.teaseFile.file.url;
+  }
   return(
     <Sticker>
       <AlbumName>{props.name}</AlbumName>
-      <TeaseImage src={props.teaseFile.file.url} alt="No pictures in this album" width="100%"/>
+      <TeaseImage src={url} alt="No pictures in this album" width="100%"/>
     </Sticker>
   )
 }
