@@ -29,7 +29,7 @@ const JulesPage = (props) => {
       <Link to={'/'+edge.node.playerName+'-detailpage/'}>{edge.node.playerName}</Link>
     </li>
   );
-
+  
   return (
     <>
       <MainTitle>{props.intl.formatMessage({id: "julespage_title"})}</MainTitle>
@@ -47,13 +47,16 @@ const JulesPage = (props) => {
 
 export default injectIntl(JulesPage);
 
+//  param doesn't work because it has too be 
+//  send by the context provided by createPage function
 export const pageQuery = graphql`
   query MyQuery {
     allContentfulPlayerPage {
       edges {
         node {
-          id
           playerName
+          id
+          node_locale
         }
       }
     }

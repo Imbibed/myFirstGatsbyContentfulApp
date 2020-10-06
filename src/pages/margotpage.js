@@ -59,7 +59,7 @@ export default MargotPage;
 
 export const query = graphql`
 query MargotQuery {
-  allContentfulBakery {
+  allContentfulBakery(filter: {node_locale: {eq: "en-US"}}) {
     edges {
       node {
         id
@@ -68,10 +68,12 @@ query MargotQuery {
         nationality
         isCold
         picture {
-          file {
-            url
-            fileName
+          image {
+            file {
+              url
+            }
           }
+          alt
         }
       }
     }

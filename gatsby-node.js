@@ -5,13 +5,14 @@ exports.createPages = async ({graphql, actions, reporter}) => {
 
   const result = await graphql(`
     query MyQuery {
-      allContentfulPlayerPage(filter: {node_locale: {eq: "en-US"}}) {
+      allContentfulPlayerPage {
         edges {
           node {
             playerName
             birthDay(formatString: "Do MMMM YYYY")
             nationality
             favoritesCharacter
+            node_locale
             playerImage {
               title
               description
@@ -68,7 +69,8 @@ exports.createPages = async ({graphql, actions, reporter}) => {
         birthday: node.birthDay,
         nationality: node.nationality,
         favoritesCharacter: node.favoritesCharacter,
-        playerImage: node.playerImage
+        playerImage: node.playerImage,
+        local: node.node_locale
       },
     })
   })
