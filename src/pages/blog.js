@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
+import { Link, graphql, useStaticQuery } from 'gatsby'
 import styled from 'styled-components'
 import { map } from 'lodash'
 import AlbumSticker from '../components/AlbumSticker/index'
@@ -17,24 +17,21 @@ const MainTitle = styled.h1`
 `;
 
 const BlogIndex = (props) => {
-  //console.log(props.data.allContentfulAlbum.edges);
+  console.log(props.data.allContentfulAnimalsGlobal.edges);
+  //console.log(props.pageContext);
 
-  const albumsList = map(props.data.allContentfulAlbum.edges, edges => {
-    let teaseFile = edges.node.photos[0];
-    return(
-      <AlbumSticker 
-        key={edges.node.id} 
-        name={edges.node.albumName} 
-        teaseFile={teaseFile}
-      />
-    )
-  });
-
+  const lang = props.pageContext.language;
+  const content = map(props.data.allContentfulAnimalsGlobal.edges, edge => 
+    <div key={edge.node.id}>
+      <p>{edge.node.node_locale}</p>  
+      <Link to={'/'+edge.node.animalLocal.name+'-page'}>link</Link>
+    </div>
+  )
   return(
     <>
       <MainTitle>Here albums photo</MainTitle>
       <AlbumsContainer>
-        {albumsList}
+        {content}
       </AlbumsContainer>
     </>
   )
@@ -43,29 +40,16 @@ const BlogIndex = (props) => {
 export default BlogIndex
 
 export const pageQuery = graphql`
-  query AlbumsQuery {
-    allContentfulAlbum {
+  query AlbumsQuery($lang: String) {
+    allContentfulAnimalsGlobal(filter: { node_locale: { eq: $lang } }) {
       edges {
         node {
           id
-          photos {
-            file {
-              url
-              details {
-                image {
-                  height
-                  width
-                }
-              }
-            }
-          }
-          albumName
-          startDate(formatString: "MMMM YYYY")
-          endDate(formatString: "MMMM YYYY")
-          description
-          albumLocation {
-            lon
-            lat
+          node_locale
+          animalLocal {
+            id
+            name
+            description
           }
         }
       }

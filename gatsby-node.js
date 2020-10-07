@@ -48,6 +48,15 @@ exports.createPages = async ({graphql, actions, reporter}) => {
           }
         }
       }
+      allContentfulAnimalLocal {
+        edges {
+          node {
+            name
+            description
+            node_locale
+          }
+        }
+      }
     }
   `
   )
@@ -89,6 +98,18 @@ exports.createPages = async ({graphql, actions, reporter}) => {
         isCold: node.isCold,
         picture: node.picture,
       },
+    })
+  })
+
+  result.data.allContentfulAnimalLocal.edges.forEach(({node}) => {
+    createPage({
+      path: node.name+'-page',
+      component: path.resolve('./src/templates/animalsTemplate.js'),
+      context: {
+        animalName: node.name,
+        animalDescription: node.description,
+        lang: node.node_locale
+      }
     })
   })
 
