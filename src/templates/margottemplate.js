@@ -2,12 +2,11 @@ import React from 'react'
 import { graphql } from 'gatsby'
 
 function MargotTemplate({ pageContext }) {
-  //console.log(pageContext.ingredients)
   return (
     <>
       <h2>{pageContext.bakeryName}</h2>
       <h4>General information : </h4>
-      <img src={pageContext.picture.file.url} alt={pageContext.picture.file.fileName} />
+      <img src={pageContext.picture.image.file.url} alt={pageContext.picture.image.file.fileName} />
       <p>Nationality : {pageContext.nationality}</p>
       <p>Temperature : {pageContext.isCold ? "Cold" : "Warm"}</p>
       <p>Ingredients : </p>
