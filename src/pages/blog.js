@@ -1,74 +1,9 @@
-import React from 'react'
-import { Link, graphql } from 'gatsby'
-import styled from 'styled-components'
-import { map } from 'lodash'
-import AlbumSticker from '../components/AlbumSticker/index'
+import React from 'react';
 
-const AlbumsContainer = styled.section`
-  display:flex;
-  flex-direction:row;
-  flex-wrap:wrap;
-  justify-content:space-between;
-  margin:5%;
-`;
-
-const MainTitle = styled.h1`
-  text-align:center;
-`;
-
-const BlogIndex = (props) => {
-  //console.log(props.data.allContentfulAlbum.edges);
-
-  const albumsList = map(props.data.allContentfulAlbum.edges, edges => {
-    let teaseFile = edges.node.photos[0];
-    return(
-      <AlbumSticker 
-        key={edges.node.id} 
-        name={edges.node.albumName} 
-        teaseFile={teaseFile}
-      />
-    )
-  });
-
+const BlogIndex = () => {
   return(
-    <>
-      <MainTitle>Here albums photo</MainTitle>
-      <AlbumsContainer>
-        {albumsList}
-      </AlbumsContainer>
-    </>
+    <p>Blog</p>
   )
 }
   
-export default BlogIndex
-
-export const pageQuery = graphql`
-  query AlbumsQuery {
-    allContentfulAlbum {
-      edges {
-        node {
-          id
-          photos {
-            file {
-              url
-              details {
-                image {
-                  height
-                  width
-                }
-              }
-            }
-          }
-          albumName
-          startDate(formatString: "MMMM YYYY")
-          endDate(formatString: "MMMM YYYY")
-          description
-          albumLocation {
-            lon
-            lat
-          }
-        }
-      }
-    }
-  }
-`
+export default BlogIndex;
