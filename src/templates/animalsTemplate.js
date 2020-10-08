@@ -3,11 +3,13 @@ import { graphql } from 'gatsby'
 
 const AnimalsTemplate = (props) => {
 
-  console.log(props.pageContext);
+  //console.log(props.pageContext);
 
   return(
     <>
-      <p>nianai</p>
+      <p>animal:</p>
+      <p>{props.pageContext.animalName}</p>
+      <p>{props.pageContext.animalDescription}</p>
     </>
   )
 }

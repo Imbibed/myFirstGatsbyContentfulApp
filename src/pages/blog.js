@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, graphql, useStaticQuery } from 'gatsby'
 import styled from 'styled-components'
 import { map } from 'lodash'
-import AlbumSticker from '../components/AlbumSticker/index'
+import LanguageSwitcher from '../components/LangSwitcher'
 
 const AlbumsContainer = styled.section`
   display:flex;
@@ -18,7 +18,7 @@ const MainTitle = styled.h1`
 
 const BlogIndex = (props) => {
   //console.log(props.data.allContentfulAnimalsGlobal.edges);
-  console.log(props);
+  //console.log(props);
 
   const content = map(props.data.allContentfulAnimalsGlobal.edges, edge => 
     <div key={edge.node.id}>
@@ -29,6 +29,7 @@ const BlogIndex = (props) => {
   return(
     <>
       <MainTitle>Here albums photo</MainTitle>
+      <LanguageSwitcher />
       <AlbumsContainer>
         {content}
       </AlbumsContainer>
