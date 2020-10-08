@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components'
 
 function RootIndex(props){
   return (
@@ -9,4 +8,4 @@ function RootIndex(props){
   )
 }
 
-export default RootIndex
+export default RootIndex;

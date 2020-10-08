@@ -35,11 +35,11 @@ const FooterStructure = ({ logo, dataFooter }) => (
       <ListsContainer>
         {map(dataFooter.categories, ({name, footerLinks}) => 
           <ListContainer>
-            <FooterCategoriesTitle disabled={false} href={footerLinks} mode="link" size="big" target="_blank">
+            <FooterCategoriesTitle disabled={false} href={footerLinks} mode="link" size="big" target="_self">
               {name}
             </FooterCategoriesTitle>
             {map(footerLinks, ({name, link}) =>
-              <FooterLink disabled={false} href={link} mode="link" size="small" target="_blank">
+              <FooterLink disabled={false} href={link} mode="link" size="small" target="_self">
                 {name}
               </FooterLink>
             )}
@@ -50,16 +50,16 @@ const FooterStructure = ({ logo, dataFooter }) => (
     <CustomContainer>
       <p>{dataFooter.allRights.content[0].content[0].value}</p>
       <div>
-        <LinkWithColor disabled={false} href={dataFooter.gdprCompliance} mode="link" size="small" target="_blank">
+        <LinkWithColor disabled={false} href={dataFooter.gdprCompliance} mode="link" size="small" target="_self">
           GDPR Compliance
         </LinkWithColor>
-        <LinkWithColor disabled={false} href={dataFooter.acceptableUsePolicy} mode="link" size="small" target="_blank">
+        <LinkWithColor disabled={false} href={dataFooter.acceptableUsePolicy} mode="link" size="small" target="_self">
           Acceptable Use Policy
         </LinkWithColor>
-        <LinkWithColor disabled={false} href={dataFooter.termsOfService} mode="link" size="small" target="_blank">
+        <LinkWithColor disabled={false} href={dataFooter.termsOfService} mode="link" size="small" target="_self">
           Terms of Service
         </LinkWithColor>
-        <LinkWithColor disabled={false} href={dataFooter.privatePolicy} mode="link" size="small" target="_blank">
+        <LinkWithColor disabled={false} href={dataFooter.privatePolicy} mode="link" size="small" target="_self">
           Privacy Policy
         </LinkWithColor>
       </div>
