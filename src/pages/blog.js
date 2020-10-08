@@ -17,10 +17,9 @@ const MainTitle = styled.h1`
 `;
 
 const BlogIndex = (props) => {
-  console.log(props.data.allContentfulAnimalsGlobal.edges);
-  //console.log(props.pageContext);
+  //console.log(props.data.allContentfulAnimalsGlobal.edges);
+  console.log(props);
 
-  const lang = props.pageContext.language;
   const content = map(props.data.allContentfulAnimalsGlobal.edges, edge => 
     <div key={edge.node.id}>
       <p>{edge.node.node_locale}</p>  

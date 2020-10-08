@@ -1,4 +1,18 @@
+const { create } = require('lodash');
 const path = require('path');
+
+exports.onCreatePage = ({page, actions}) => {
+  const {createPage, deletePage} = actions;
+  deletePage(page);
+
+  createPage({
+    ...page,
+    context: {
+      ...page.context,
+      lang: page.context.intl.language,
+    },
+  })
+}
 
 exports.createPages = async ({graphql, actions, reporter}) => {
   const { createPage } = actions
@@ -100,7 +114,7 @@ exports.createPages = async ({graphql, actions, reporter}) => {
       },
     })
   })
-
+  
   result.data.allContentfulAnimalLocal.edges.forEach(({node}) => {
     createPage({
       path: node.name+'-page',
