@@ -18,7 +18,7 @@ const MainTitle = styled.h1`
 
 const BlogIndex = (props) => {
   //console.log(props.data.allContentfulAnimalsGlobal.edges);
-  //console.log(props);
+  console.log(props);
 
   const content = map(props.data.allContentfulAnimalsGlobal.edges, edge => 
     <div key={edge.node.id}>

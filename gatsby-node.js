@@ -1,6 +1,19 @@
 const { create } = require('lodash');
 const path = require('path');
 
+const LangMapping = {
+  fr: 'fr',
+  en: 'en-US'
+}
+
+const getISOLang = (intlLang) => {
+  if(intlLang === 'en'){
+    return LangMapping.en
+  }else if(intlLang === 'fr'){
+    return LangMapping.fr
+  }
+}
+
 exports.onCreatePage = ({page, actions}) => {
   const {createPage, deletePage} = actions;
   deletePage(page);
@@ -9,7 +22,7 @@ exports.onCreatePage = ({page, actions}) => {
     ...page,
     context: {
       ...page.context,
-      lang: page.context.intl.language,
+      lang: getISOLang(page.context.intl.language),
     },
   })
 }
