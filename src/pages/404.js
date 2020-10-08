@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container404 } from "../components/Page404/styles/Container404"
+import { Container404 } from "./styles/Container404"
 
 const page404 = (props) => {
   const image = props.data.contentfulImage;

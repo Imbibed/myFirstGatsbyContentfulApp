@@ -1,24 +1,9 @@
 import { graphql, Link } from 'gatsby';
 import React from 'react';
-import styled from 'styled-components';
+import { DataCell } from "./styles/DataCell";
+import { Table } from "./styles/Table";
+import { TitleCell } from "./styles/TitleCell";
 import { map } from 'lodash';
-
-const DataCell = styled.td`
-  text-align: center;
-  border: 1px solid rgb(190, 190, 190);
-  padding: 10px;
-`
-const Table = styled.table`
-  border-collapse: collapse;
-  border: 2px solid rgb(200, 200, 200);
-`
-const TitleCell = styled.th`
-  text-align: center;
-  border: 1px solid rgb(190, 190, 190);
-  padding: 10px;
-  background-color: #696969;
-  color: #fff;
-`
 
 function MargotPage(props) {
   const pastries = props.data.allContentfulBakery.edges;
