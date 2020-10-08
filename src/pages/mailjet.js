@@ -22,7 +22,7 @@ const mailjet = (props) => {
 export default mailjet;
 
 export const pageQuery = graphql`
-  query MyMailjetNavigationQuery {
+  query MyMailjetNavigationQuery($lang: String) {
     allContentfulMailjetLogo {
       edges {
         node {
@@ -35,7 +35,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    allContentfulNavbarLeftPart {
+    allContentfulNavbarLeftPart(filter: { node_locale: { eq: $lang } }) {
       edges {
         node {
           label
