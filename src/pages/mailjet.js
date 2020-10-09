@@ -7,13 +7,14 @@ import MailjetNavigation from '../components/MailjetNavigation'
 const mailjet = (props) => {
   const mailjetLogo = props.data.allContentfulMailjetLogo.edges[0];
   const leftSideContent = props.data.allContentfulNavbarLeftPart.edges[0].node.content;
-  //console.log(leftSideContent);
+  //console.log(props);
   return(
     <>
       <MailjetNavigation 
         goTo={mailjetLogo.node.href} 
         pictureUrl={mailjetLogo.node.logo.file.url}
         leftSideContent={leftSideContent}
+        intl={props.pageContext.intl}
       />
     </>
   )

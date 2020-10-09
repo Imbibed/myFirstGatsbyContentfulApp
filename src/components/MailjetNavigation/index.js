@@ -10,6 +10,7 @@ import {ExtMJButton, ExtMJMenuButton} from './styles/MJComponent'
 import {Menu} from 'mailjet-react-components'
 import { map } from 'lodash'
 import TranslationTools from '../../Utils/TranslationService'
+import { IntlContextConsumer, changeLocale } from "gatsby-plugin-intl"
 
 //  To put in an other file....
 var CONTENT_TYPE = {
@@ -38,12 +39,12 @@ const MailjetNavigation = (props) => {
     }
   })
 
-  const translationOption = map(TranslationTools.table, val => {
-    return(
-      <option value={val.key}>{val.value}</option>
-    )
-  })
-  
+  const languageName = {
+    en: "English",
+    fr: "Français"
+  }
+  //console.log(props.intl)
+  const intlContext = props.intl;
   return(
     <MailjetNavigationContainer>
       <NavContainer>
@@ -54,9 +55,19 @@ const MailjetNavigation = (props) => {
           {leftPartContent}
         </LeftPart>
         <RightPart>
-          {/* <select>
-            {translationOption}
-          </select> */}
+          <Menu>
+            <Menu.Button>Languages</Menu.Button>
+            <Menu.OptionsPanel alignOptions="right">
+              {map(intlContext.languages, (language) => {
+                  return(
+                    <Menu.Option key={language} onClick={() => changeLocale(language)}>
+                      {languageName[language]}
+                    </Menu.Option>
+                  )
+                })
+              }
+            </Menu.OptionsPanel>
+          </Menu>
         </RightPart>
       </NavContainer>
     </MailjetNavigationContainer>
