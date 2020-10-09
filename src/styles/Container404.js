@@ -6,9 +6,11 @@ export const Container404 = styled.div`
   > h2 {
     color: ${({theme}) => theme.colors.statusspam};
     font-size: ${({theme}) => theme.sizes.s15};
+    margin: ${({theme}) => theme.sizes.s8};
   }
-  > h3 {
+  > h1 {
     font-family: serif;
     color: ${({theme}) => theme.colors.darksteel};
+    margin: ${({theme}) => theme.sizes.s6};
   }
 `

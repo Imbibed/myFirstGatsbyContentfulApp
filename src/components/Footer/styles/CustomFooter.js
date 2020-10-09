@@ -1,8 +1,10 @@
 import styled from 'styled-components'
 
-export const CustomFooter = styled.footer`
+const CustomFooter = styled.footer`
   background-color: rgb(4, 22, 43);
-  color: rgb(201, 206, 214);
+  color: ${({theme}) => theme.colors.lightGrey};
   font-family: "Inter UI", sans-serif;
-  margin-top: ${({theme}) => theme.sizes.s5}
+  margin-top: ${({theme}) => theme.sizes.margins.m5};
 `;
+
+export default CustomFooter;

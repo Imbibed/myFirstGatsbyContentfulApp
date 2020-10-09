@@ -1,9 +1,11 @@
 import styled from 'styled-components'
 import { Container } from 'mailjet-react-components';
 
-export const CustomContainer = styled(Container)`
+const CustomContainer = styled(Container)`
   display:flex;
   justify-content: space-between;
   align-items: center;
-  padding: 25px 15px;
+  padding: ${({theme}) => theme.sizes.paddings.p5} ${({theme}) => theme.sizes.paddings.p4};
 `;
+
+export default CustomContainer;

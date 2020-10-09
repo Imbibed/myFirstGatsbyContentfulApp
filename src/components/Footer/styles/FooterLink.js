@@ -1,13 +1,15 @@
-import { Link } from 'mailjet-react-components';
 import styled from 'styled-components';
+import { Link } from 'mailjet-react-components';
 
-export const FooterLink = styled(Link)`
+const FooterLink = styled(Link)`
   text-decoration: none;
-  color: rgb(138, 148, 166);
-  font-size: 14px;
-  padding-bottom : ${({theme}) => theme.sizes.s4};
-  padding-top : ${({theme}) => theme.sizes.s3};
+  color: ${({theme}) => theme.colors.middleGrey};
+  font-size: ${({theme}) => theme.sizes.small};
+  padding-bottom : ${({theme}) => theme.sizes.paddings.p4};
+  padding-top : ${({theme}) => theme.sizes.paddings.p3};
   &&:hover {
-    color: rgb(201, 206, 214);
+    color: ${({theme}) => theme.colors.lightGrey};
   }
 `
+
+export default FooterLink;

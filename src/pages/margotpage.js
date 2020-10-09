@@ -1,9 +1,8 @@
-import { graphql, Link } from 'gatsby';
 import React from 'react';
-import { DataCell } from "./styles/DataCell";
-import { Table } from "./styles/Table";
-import { TitleCell } from "./styles/TitleCell";
+import { graphql, Link } from 'gatsby';
 import { map } from 'lodash';
+import { Image } from 'mailjet-react-components';
+import { DataCell, Table, TitleCell } from "../styles/index";
 
 function MargotPage(props) {
   const pastries = props.data.allContentfulBakery.edges;
@@ -31,7 +30,7 @@ function MargotPage(props) {
               <DataCell scope="row">{nationality}</DataCell>
               <DataCell scope="row">{isCold ? "Cold" : "Warm"}</DataCell>
               <DataCell scope="row">
-                <img src={picture.image.file.url} alt={picture.image.alt} height="100px" width="150px"/>
+                <Image src={picture.image.file.url} alt={picture.image.alt} height="100px" width="150px"/>
               </DataCell>
             </tr>
           )}

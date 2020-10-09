@@ -3,7 +3,7 @@ import {CustomLink} from './styles/CustomLink'
 import {CustomSection} from './styles/CustomSection'
 import {ContainerSection} from './styles/ContainerSection'
 
-const Navigation =  ({children}) => 
+const Navigation = ({children}) => 
   <>
     <CustomSection>
       <CustomLink to="/">Home</CustomLink>
