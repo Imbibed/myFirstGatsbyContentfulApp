@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, graphql, navigate } from "gatsby"
+import { Link, graphql, navigate, useStaticQuery } from "gatsby"
 import styled from 'styled-components'
 import {MailjetNavigationContainer} from './styles/MailjetNavigationContainer'
 import {NavContainer} from './styles/NavContainer'
@@ -19,6 +19,9 @@ var CONTENT_TYPE = {
 }
 
 const MailjetNavigation = (props) => {
+
+  const leftSideData = useStaticQuery(leftSideQuery);
+  console.log(leftSideData);
 
   const leftPartContent = map(props.leftSideContent, ({label, buttons, id, __typename, path}) => {
     if(__typename === CONTENT_TYPE.NAVBAR_DROPDOWN){
@@ -47,6 +50,7 @@ const MailjetNavigation = (props) => {
   const intlContext = props.intl;
   
   return(
+    <>
     <MailjetNavigationContainer>
       <NavContainer>
         <Link to={props.goTo}>
@@ -72,8 +76,55 @@ const MailjetNavigation = (props) => {
         </RightPart>
       </NavContainer>
     </MailjetNavigationContainer>
+    <section>
+      {children}
+    </section>
+    </>
   )
 }
 
 export default MailjetNavigation;
 
+const leftSideQuery = graphql`
+  query MyMailjetNavigationQuery($lang: String) {
+    allContentfulMailjetLogo(filter: { node_locale: { eq: $lang } }) {
+      edges {
+        node {
+          href
+          node_locale
+          logo {
+            file {
+              url
+            }
+          }
+        }
+      }
+    }
+    allContentfulNavbarLeftPart(filter: { node_locale: { eq: $lang } }) {
+      edges {
+        node {
+          label
+          node_locale
+          content {
+            ... on ContentfulNavBarButton {
+              id
+              label
+              path
+            }
+            ... on ContentfulNavBarDropDown {
+              id
+              label
+              buttons {
+                ... on ContentfulNavBarButton {
+                  id
+                  label
+                  path
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`

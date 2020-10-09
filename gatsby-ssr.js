@@ -19,3 +19,4 @@ const BodyComponents = [
 export const onRenderBody = ({ setPreBodyComponents }) => {
   setPreBodyComponents(BodyComponents);
 }
+
