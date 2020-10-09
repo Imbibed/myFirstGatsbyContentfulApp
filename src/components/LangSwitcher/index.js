@@ -8,7 +8,7 @@ const languageName = {
 }
 
 const LanguageSwitcher = (props) => {
-  console.log(props);
+  
   return(
     <>
       <IntlContextConsumer>

@@ -17,7 +17,7 @@ const getISOLang = (intlLang) => {
 exports.onCreatePage = ({page, actions}) => {
   const {createPage, deletePage} = actions;
   deletePage(page);
-  console.log(page.context.intl);
+  
   createPage({
     ...page,
     context: {

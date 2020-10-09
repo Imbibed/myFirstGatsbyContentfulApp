@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 
 function Template({pageContext}){
-  //console.log(pageContext.playerImage);
+  
   const imgWidth = pageContext.playerImage.file.details.image.width / 3;
   const imgHeight = pageContext.playerImage.file.details.image.height / 3;
   return(

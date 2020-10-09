@@ -17,8 +17,6 @@ const MainTitle = styled.h1`
 `;
 
 const BlogIndex = (props) => {
-  //console.log(props.data.allContentfulAnimalsGlobal.edges);
-  console.log(props);
 
   const content = map(props.data.allContentfulAnimalsGlobal.edges, edge => 
     <div key={edge.node.id}>
@@ -29,7 +27,7 @@ const BlogIndex = (props) => {
   return(
     <>
       <MainTitle>Here albums photo</MainTitle>
-      <LanguageSwitcher />
+      {/* <LanguageSwitcher /> */}
       <AlbumsContainer>
         {content}
       </AlbumsContainer>

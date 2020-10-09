@@ -43,8 +43,9 @@ const MailjetNavigation = (props) => {
     en: "English",
     fr: "Français"
   }
-  //console.log(props.intl)
+  
   const intlContext = props.intl;
+  
   return(
     <MailjetNavigationContainer>
       <NavContainer>
