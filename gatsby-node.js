@@ -119,7 +119,7 @@ exports.createPages = async ({graphql, actions, reporter}) => {
   // Create pages of bakery
   result.data.allContentfulBakery.edges.forEach(({ node }) => {
     createPage({
-      path: id,
+      path: node.id,
       component: path.resolve('./src/templates/margottemplate.js'),
       context: {
         ...node,

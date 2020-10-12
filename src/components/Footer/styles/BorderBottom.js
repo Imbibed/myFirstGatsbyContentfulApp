@@ -1,4 +1,5 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const BorderBottom = styled.div`
   border-bottom: 1px solid ${({theme}) => theme.colors.darkGrey};
@@ -7,5 +8,13 @@ const BorderBottom = styled.div`
     margin-bottom: ${theme.sizes.margins.m4};
   `}
 `;
+
+BorderBottom.propTypes = {
+  hasMarginBottom: PropTypes.bool
+}
+
+BorderBottom.defaultProps = {
+  hasMarginBottom: false
+}
 
 export default BorderBottom;
