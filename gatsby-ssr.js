@@ -22,3 +22,6 @@ export const onRenderBody = ({setPreBodyComponents}) => {
   setPreBodyComponents(BodyComponents);
 }
 
+export const onPreRenderHTML = ({pathname}) => {
+  console.log(pathname);
+}

@@ -1,12 +1,7 @@
 const TranslationTools = {
   table: {
-    FRENCH: {key: 'fr-FR', value: 'Français'},
-    SPANISH: {key: 'es-ES', value: 'Español'},
-    ENGLISH: {key:'en-US', value: 'English'},
-    GERMAN : {key:'de-DE', value: 'Deutsch'}
-  },
-  getBrowserLanguage: () => {
-    return navigator.language || navigator.userLanguage;
+    en: {name: 'English', contentfulName: 'en-US'},
+    fr: {name: 'Français', contentfulName: 'fr'}
   }
 }
 

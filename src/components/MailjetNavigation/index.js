@@ -8,22 +8,54 @@ import {RightPart} from './styles/RightPart'
 import {Button} from 'mailjet-react-components'
 import {ExtMJButton, ExtMJMenuButton} from './styles/MJComponent'
 import {Menu} from 'mailjet-react-components'
-import { map } from 'lodash'
+import { map, find, filter } from 'lodash'
 import TranslationTools from '../../Utils/TranslationService'
 import { IntlContextConsumer, changeLocale } from "gatsby-plugin-intl"
 
 //  To put in an other file....
-var CONTENT_TYPE = {
+const CONTENT_TYPE = {
   NAVBAR_DROPDOWN : "ContentfulNavBarDropDown",
   NAVBAR_BUTTON : "ContentfulNavBarButton"
 }
 
-const MailjetNavigation = (props) => {
+const languageMapping = {
+  en: 'en-US',
+  fr: 'fr'
+}
 
-  const leftSideData = useStaticQuery(leftSideQuery);
-  console.log(leftSideData);
+const languageName = {
+  en: "English",
+  fr: "Français"
+}
 
-  const leftPartContent = map(props.leftSideContent, ({label, buttons, id, __typename, path}) => {
+const MailjetNavigation = ({children}) => {
+
+  //  Retrieve all multilangual data from contentful for the navbar
+  const navbarData = useStaticQuery(leftSideQuery);
+  
+  //  Then filter dynamicaly with the current language selected by user
+  const translatedNavbarData = filter(navbarData.allContentfulNavbar.edges, (edge) => {
+    return edge.node.node_locale === languageMapping[children.props.locale];
+  })
+
+  const filledtranslatedNavbarData = find(translatedNavbarData, (translatedData) => {
+    return translatedData.node.leftContent && 
+      translatedData.node.rigthContent && 
+      translatedData.node.logo && 
+      translatedData.node.cta;
+  })
+  console.log(filledtranslatedNavbarData)
+
+  //  Then get wanted data in the navigation bar object
+  const logo = filledtranslatedNavbarData.node.logo;
+  //  This have to be handle by contentful within create path field in the navbar logo object
+  logo["path"]="";
+  console.log(logo);
+
+  const leftSideContent = filledtranslatedNavbarData.node.leftContent;
+  //console.log(leftSideContent);
+
+  const leftPartContent = map(leftSideContent, ({label, buttons, id, __typename, path}) => {
     if(__typename === CONTENT_TYPE.NAVBAR_DROPDOWN){
       return (<Menu key={id}>
                 <ExtMJMenuButton key={'MenuButton'+id}>{label}</ExtMJMenuButton>
@@ -42,43 +74,39 @@ const MailjetNavigation = (props) => {
     }
   })
 
-  const languageName = {
-    en: "English",
-    fr: "Français"
-  }
   
-  const intlContext = props.intl;
+  // const intlContext = props.intl;
   
   return(
     <>
-    <MailjetNavigationContainer>
-      <NavContainer>
-        <Link to={props.goTo}>
-          <img alt="No picture" src={props.pictureUrl} height="40px"/>
-        </Link>
-        <LeftPart>
-          {leftPartContent}
-        </LeftPart>
-        <RightPart>
-          <Menu>
-            <Menu.Button>Languages</Menu.Button>
-            <Menu.OptionsPanel alignOptions="right">
-              {map(intlContext.languages, (language) => {
-                  return(
-                    <Menu.Option key={language} onClick={() => changeLocale(language)}>
-                      {languageName[language]}
-                    </Menu.Option>
-                  )
-                })
-              }
-            </Menu.OptionsPanel>
-          </Menu>
-        </RightPart>
-      </NavContainer>
-    </MailjetNavigationContainer>
-    <section>
-      {children}
-    </section>
+      <MailjetNavigationContainer>
+        <NavContainer>
+          <Link to="/">
+            <img alt="No picture" src={logo.image.file.url} height="40px"/>
+          </Link>
+          <LeftPart>
+            {leftPartContent}
+          </LeftPart>
+          <RightPart>
+            {/* <Menu>
+              <Menu.Button>Languages</Menu.Button>
+              <Menu.OptionsPanel alignOptions="right">
+                {map(intlContext.languages, (language) => {
+                    return(
+                      <Menu.Option key={language} onClick={() => changeLocale(language)}>
+                        {languageName[language]}
+                      </Menu.Option>
+                    )
+                  })
+                }
+              </Menu.OptionsPanel>
+            </Menu> */}
+          </RightPart>
+        </NavContainer>
+      </MailjetNavigationContainer>
+      <section>
+        {children}
+      </section>
     </>
   )
 }
@@ -86,42 +114,50 @@ const MailjetNavigation = (props) => {
 export default MailjetNavigation;
 
 const leftSideQuery = graphql`
-  query MyMailjetNavigationQuery($lang: String) {
-    allContentfulMailjetLogo(filter: { node_locale: { eq: $lang } }) {
+  query MyMailjetNavigationQuery {
+    allContentfulNavbar {
       edges {
         node {
-          href
           node_locale
-          logo {
-            file {
-              url
-            }
-          }
-        }
-      }
-    }
-    allContentfulNavbarLeftPart(filter: { node_locale: { eq: $lang } }) {
-      edges {
-        node {
-          label
-          node_locale
-          content {
+          name
+          id
+          contentful_id
+          leftContent {
             ... on ContentfulNavBarButton {
               id
-              label
               path
+              label
+              contentful_id
             }
             ... on ContentfulNavBarDropDown {
               id
               label
               buttons {
-                ... on ContentfulNavBarButton {
-                  id
-                  label
-                  path
-                }
+                label
+                path
+                contentful_id
+              }
+              contentful_id
+            }
+          }
+          logo {
+            id
+            alt
+            name
+            image {
+              file {
+                url
               }
             }
+          }
+          cta {
+            label
+            path
+          }
+          rigthContent {
+            id
+            path
+            label
           }
         }
       }

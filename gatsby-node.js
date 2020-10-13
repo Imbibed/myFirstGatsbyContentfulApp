@@ -132,8 +132,6 @@ exports.createPages = async ({graphql, actions, reporter}) => {
   })
   
   result.data.allContentfulAnimalsGlobal.edges.forEach(({node}) => {
-    console.log("création page animal: " + node.animalLocal.node_locale);
-
     createPage({
       path: node.name+'-page',
       component: path.resolve('./src/templates/animalsTemplate.js'),
