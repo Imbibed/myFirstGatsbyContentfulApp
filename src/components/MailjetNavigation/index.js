@@ -98,16 +98,17 @@ const MailjetNavigation = ({children}) => {
               </ExtMJButton>)
     }
   })
-  
+
   var setIconButtonIcon = () => {
-    if(currentLang.locale === 'en'){
-      return styledEnglishFlag;
-    }else if(currentLang.locale === 'fr'){
-      return styledFrenchFlag;
+    let i;
+    for(i=0;i<Object.keys(languageTable).length;i++){
+      if(currentLang.locale === Object.keys(languageTable)[i].toString()){
+        return languageTable[Object.keys(languageTable)[i]].icon;
+      }
     }
   }
 
-  // const intlContext = props.intl;
+  //setIconButtonIcon2();
   return(
     <>
       <MailjetNavigationContainer>
@@ -149,8 +150,6 @@ const MailjetNavigation = ({children}) => {
                   )
                 })
                 }
-                {/* <Option iconName={styledEnglishFlag} readOnly>English</Option>
-                <Option iconName={styledFrenchFlag} readOnly>Français</Option> */}
               </Menu.OptionsPanel>
             </Menu>
           </div>
