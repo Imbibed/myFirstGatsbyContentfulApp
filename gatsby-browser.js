@@ -1,13 +1,13 @@
 import React from "react";
-import { mailjet, ThemePartialProvider } from "mailjet-react-components";
+import { ThemePartialProvider } from "mailjet-react-components";
 import theme from './src/theme';
 import Navigation from './src/components/Navigation';
 import Footer from "./src/components/Footer";
 
 export const wrapPageElement = ({ element }) => 
-<ThemePartialProvider theme={mailjet} otherTheme={theme} loadFonts={false}>
+<ThemePartialProvider theme={theme} loadFonts={false}>
   <Navigation>
     {element}
   </Navigation>
-  <Footer/>
+  <Footer />
 </ThemePartialProvider>

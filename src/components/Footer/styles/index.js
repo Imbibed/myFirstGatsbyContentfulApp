@@ -1,9 +1,9 @@
 import BorderBottom from "./BorderBottom";
-import CustomContainer from "./CustomContainer"
+import FooterDiv from "./FooterDiv"
 import CustomFooter from "./CustomFooter";
 import FooterCategoriesTitle from "./FooterCategoriesTitle";
 import FooterLink from "./FooterLink";
-import ListsContainer from "./ListsContainer";
+import ListCategories from "./ListCategories";
 
-export { BorderBottom, CustomContainer, CustomFooter,FooterCategoriesTitle, FooterLink,
-   ListsContainer };
+export { BorderBottom, FooterDiv, CustomFooter,FooterCategoriesTitle, FooterLink,
+   ListCategories };

@@ -9,7 +9,7 @@ import {Button} from 'mailjet-react-components'
 import {ExtMJButton, ExtMJMenuButton} from './styles/MJComponent'
 import {Menu} from 'mailjet-react-components'
 import { map } from 'lodash'
-import TranslationTools from '../../Utils/TranslationService'
+import TranslationTools from '../../Utils'
 import { IntlContextConsumer, changeLocale } from "gatsby-plugin-intl"
 
 //  To put in an other file....
