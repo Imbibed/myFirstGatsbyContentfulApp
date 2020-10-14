@@ -20,6 +20,7 @@ const LanguageSwitcher = (props) => {
               </a>
             )
           })
+          
         }
       </IntlContextConsumer>
     </>
