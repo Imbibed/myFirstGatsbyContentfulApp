@@ -4,7 +4,7 @@ import theme from './src/theme'
 import { mailjet, ThemePartialProvider } from "mailjet-react-components";
 
 export const wrapPageElement = ({element}) => {
-  //console.log(props.allContentfulMailjetLogo);
+  
   return(
     <ThemePartialProvider theme={mailjet} otherTheme={theme} loadFonts={false}>
       <MailjetNavbar>
@@ -20,8 +20,4 @@ const BodyComponents = [
 
 export const onRenderBody = ({setPreBodyComponents}) => {
   setPreBodyComponents(BodyComponents);
-}
-
-export const onPreRenderHTML = ({pathname}) => {
-  console.log(pathname);
 }
