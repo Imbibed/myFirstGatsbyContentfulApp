@@ -80,7 +80,7 @@ const MailjetNavigation = ({children}) => {
 
   const rightSideContent = translatedNavbarData.node.navbar.rigthContent;
 
-  const leftPartContent = map(leftSideContent, ({label, buttons, id, __typename, path}) => {
+  const JSXLeftSideContent = map(leftSideContent, ({label, buttons, id, __typename, path}) => {
     if(__typename === CONTENT_TYPE.NAVBAR_DROPDOWN){
       return (<Menu key={id}>
                 <ExtMJMenuButton key={'MenuButton'+id}>{label}</ExtMJMenuButton>
@@ -98,7 +98,15 @@ const MailjetNavigation = ({children}) => {
               </ExtMJButton>)
     }
   })
+  
+  const JSXRightSideContent = map(rightSideContent, ({id, label, path}) => {
+    return (
+      <ExtMJButton key={id} mode="secondary" onClick={() => {navigate('/'+path+'/')}}>{label}</ExtMJButton>
+    )
+  })
 
+  const cta = translatedNavbarData.node.navbar.cta;
+  
   var setIconButtonIcon = () => {
     let i;
     for(i=0;i<Object.keys(languageTable).length;i++){
@@ -108,7 +116,6 @@ const MailjetNavigation = ({children}) => {
     }
   }
 
-  //setIconButtonIcon2();
   return(
     <>
       <MailjetNavigationContainer>
@@ -117,24 +124,15 @@ const MailjetNavigation = ({children}) => {
             <img alt="No picture" src={logo.image.file.url} height="40px"/>
           </Link>
           <LeftPart>
-            {leftPartContent}
+            {JSXLeftSideContent}
           </LeftPart>
           <RightPart>
-            {/* <Menu>
-              <Menu.Button>Languages</Menu.Button>
-              <Menu.OptionsPanel alignOptions="right">
-                {map(intlContext.languages, (language) => {
-                    return(
-                      <Menu.Option key={language} onClick={() => changeLocale(language)}>
-                        {languageName[language]}
-                      </Menu.Option>
-                    )
-                  })
-                }
-              </Menu.OptionsPanel>
-            </Menu> */}
+            {JSXRightSideContent}
           </RightPart>
-          <div>
+          <div style={{margin: '8px 16px 0 0'}}>
+            <Button onClick={() => {navigate('/'+cta.path+'/')}}>{cta.label}</Button>
+          </div>
+          <div style={{margin: '8px 0 0 0'}}>
             <Menu>
               <Menu.IconButton icon={setIconButtonIcon()} showCaret={true} isLoading={false}/>
               <Menu.OptionsPanel alignOptions={'right'}>
@@ -201,6 +199,7 @@ const leftSideQuery = graphql`
               }
             }
             rigthContent {
+              id
               label
               path
             }
