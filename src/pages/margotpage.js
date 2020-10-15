@@ -1,23 +1,8 @@
+import React from 'react';
 import { graphql, Link } from 'gatsby';
-import React from 'react'
-import styled from 'styled-components'
-
-const DataCell = styled.td`
-  text-align: center;
-  border: 1px solid rgb(190, 190, 190);
-  padding: 10px;
-`
-const Table = styled.table`
-  border-collapse: collapse;
-  border: 2px solid rgb(200, 200, 200);
-`
-const TitleCell = styled.th`
-  text-align: center;
-  border: 1px solid rgb(190, 190, 190);
-  padding: 10px;
-  background-color: #696969;
-  color: #fff;
-`
+import { map } from 'lodash';
+import { Image } from 'mailjet-react-components';
+import { DataCell, Table, TitleCell } from "../styles/index";
 
 function MargotPage(props) {
   const pastries = props.data.allContentfulBakery.edges;
@@ -36,16 +21,16 @@ function MargotPage(props) {
           </tr>
         </thead>
         <tbody>
-          {pastries.map((pastry) =>
-            <tr key={pastry.node.id}>
+          {map(pastries, ({node: {id, bakeryName, ingredients, nationality, isCold, picture}}) =>
+            <tr key={id}>
               <DataCell scope="row">
-                <Link to={'/'+ pastry.node.id}>{pastry.node.bakeryName}</Link>
+                <Link to={'/'+ id}>{bakeryName}</Link>
               </DataCell>
-              <DataCell scope="row">{pastry.node.ingredients.map((ingredient) => ingredient + ' ')}</DataCell>
-              <DataCell scope="row">{pastry.node.nationality}</DataCell>
-              <DataCell scope="row">{pastry.node.isCold ? "Cold" : "Warm"}</DataCell>
+              <DataCell scope="row">{ingredients.map((ingredient) => ingredient + ' ')}</DataCell>
+              <DataCell scope="row">{nationality}</DataCell>
+              <DataCell scope="row">{isCold ? "Cold" : "Warm"}</DataCell>
               <DataCell scope="row">
-                <img src={pastry.node.picture.file.url} alt={pastry.node.picture.file.fileName} height="100px" width="150px"/>
+                <Image src={picture.image.file.url} alt={picture.image.alt} height="100px" width="150px"/>
               </DataCell>
             </tr>
           )}
