@@ -6,7 +6,6 @@ function RootIndex(props){
   return (
     <>
       <p>Index</p>
-      <LanguageSwitcher />
     </>
   )
 }
