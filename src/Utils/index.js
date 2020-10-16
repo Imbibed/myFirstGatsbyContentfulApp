@@ -1,5 +1,10 @@
 import { styledForTabletAndMobile, styledForMobile, styledForDesktop,
 styledForTablet} from './BreakpointsHelpers';
-import { TranslationTools } from './TranslationService';
+import { getLanguageTable, languages } from './TranslationService';
 
-export { styledForTabletAndMobile, styledForMobile, styledForDesktop, styledForTablet, TranslationTools}
+export { styledForTabletAndMobile, 
+  styledForMobile, 
+  styledForDesktop, 
+  styledForTablet, 
+  getLanguageTable,
+  languages}
