@@ -1,16 +1,15 @@
 import React from "react";
 import { Link, graphql, navigate, useStaticQuery } from "gatsby"
 import {MailjetNavigationContainer} from './styles/MailjetNavigationContainer'
-import {NavContainer} from './styles/NavContainer'
 import {LeftPart} from './styles/LeftPart'
 import {RightPart} from './styles/RightPart'
-import {Button, Menu, Body2, Div} from 'mailjet-react-components'
+import {ShadowDiv} from './styles/ShadowDiv'
+import {Button, Menu, Body2, Div, Image, Container} from 'mailjet-react-components'
 import {ExtMJButton, ExtMJMenuButton} from './styles/MJComponent'
 import { map, find } from 'lodash'
 import { changeLocale } from "gatsby-plugin-intl"
 import {getLanguageTable, languages} from '../../Utils/TranslationService'
 import {CONTENT_TYPE} from '../../Utils/ContentfulObjectsMappingTable'
-import {Cta} from './styles/Cta'
 
 const Option = ({ children, iconName: Icon, ...rest }) => (
   <Menu.Option {...rest}>
@@ -20,7 +19,7 @@ const Option = ({ children, iconName: Icon, ...rest }) => (
 )
 
 const MailjetNavigation = ({children}) => {
-  
+
   var currentLang = children.props;
   const languageTable = getLanguageTable();
   //  Retrieve all multilangual data from contentful for the navbar
@@ -32,13 +31,13 @@ const MailjetNavigation = ({children}) => {
   })
   
   //  Then get wanted data in the navigation bar object
-  const logo = translatedNavbarData.node.navbar.logo;
+  const {logo} = translatedNavbarData.node.navbar;
   //  This have to be handle by contentful within create path field in the navbar logo object
   logo["path"]="/";
 
-  const leftSideContent = translatedNavbarData.node.navbar.leftContent;
-
-  const rightSideContent = translatedNavbarData.node.navbar.rigthContent;
+  const {leftContent: leftSideContent, rigthContent: rightSideContent} = translatedNavbarData.node.navbar;
+  
+  const {cta} = translatedNavbarData.node.navbar;
 
   const JSXLeftSideContent = map(leftSideContent, ({label, buttons, id, __typename, path}) => {
     if(__typename === CONTENT_TYPE.NAVBAR_DROPDOWN){
@@ -64,8 +63,6 @@ const MailjetNavigation = ({children}) => {
       <ExtMJButton key={id} mode="secondary" onClick={() => {navigate('/'+path+'/')}}>{label}</ExtMJButton>
     )
   })
-
-  const cta = translatedNavbarData.node.navbar.cta;
   
   var setIconButtonIcon = () => {
     let i;
@@ -78,42 +75,43 @@ const MailjetNavigation = ({children}) => {
 
   return(
     <>
-      <MailjetNavigationContainer>
-        <Link to="/">
-        <Image alt="No picture" src={logo.image.file.url} height="h7"/>
-        </Link>
-        <LeftPart>
-          {JSXLeftSideContent}
-        </LeftPart>
-        <RightPart>
-          {JSXRightSideContent}
-        </RightPart>
-        {/* <div style={{margin: '8px 16px 0 0'}}>
-          <Button onClick={() => {navigate('/'+cta.path+'/')}}>{cta.label}</Button>
-        </div> */}
-        <Cta di="f" ai="c">
-          <Button onClick={() => {navigate('/'+cta.path+'/')}}>{cta.label}</Button>
-        </Cta>
-        <div style={{margin: '8px 0 0 0'}}>
-          <Menu>
-            <Menu.IconButton icon={setIconButtonIcon()} showCaret={true} isLoading={false}/>
-            <Menu.OptionsPanel alignOptions={'right'}>
-              {map(languages, (language) => {
-                return (
-                  <Option 
-                    key={language} 
-                    iconName={languageTable[language].icon} 
-                    readOnly
-                    onClick={() => changeLocale(language)}>
-                      {languageTable[language].name}
-                  </Option>
-                )
-              })
-              }
-            </Menu.OptionsPanel>
-          </Menu>
-        </div>
-      </MailjetNavigationContainer>
+      <ShadowDiv>
+        <Container>
+          <MailjetNavigationContainer>
+            <Div di="f" jc="fs" ai="ce">
+              <Link to="/">
+                <Image alt="No picture" src={logo.image.file.url} height="h7" width="auto"/>
+              </Link>
+              <LeftPart>
+                {JSXLeftSideContent}
+              </LeftPart>
+            </Div>
+            <Div di="f" jc="fe" ai="ce">
+              <RightPart>
+                {JSXRightSideContent}
+              </RightPart>
+              <Button onClick={() => {navigate('/'+cta.path+'/')}}>{cta.label}</Button>
+              <Menu>
+                <Menu.IconButton icon={setIconButtonIcon()} showCaret={true} isLoading={false}/>
+                <Menu.OptionsPanel alignOptions={'right'}>
+                  {map(languages, (language) => {
+                    return (
+                      <Option 
+                        key={language} 
+                        iconName={languageTable[language].icon} 
+                        readOnly
+                        onClick={() => changeLocale(language)}>
+                          {languageTable[language].name}
+                      </Option>
+                    )
+                  })
+                  }
+                </Menu.OptionsPanel>
+              </Menu>
+            </Div>
+          </MailjetNavigationContainer>
+        </Container>
+      </ShadowDiv>
       <section>
         {children}
       </section>
