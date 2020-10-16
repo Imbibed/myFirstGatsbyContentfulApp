@@ -8,13 +8,13 @@ import LinkWithColor from './components/LinkWithColor';
 import { BorderBottom, FooterDiv, CustomFooter,FooterCategoriesTitle, FooterLink,
     ListCategories } from './styles';
 
-const FooterStructure = ({ logo: { image }, dataFooter: { twitterLink, facebookLink, gitHubLink, linkedinLink,
+const FooterStructure = ({data: {logo, twitterLink, facebookLink, gitHubLink, linkedinLink,
       contactEmail, categories, allRights, gdprCompliance, acceptableUsePolicy, termsOfService, privatePolicy }}) => (
   <CustomFooter>
     <BorderBottom hasMarginBottom={true}>
       <Container>
         <FooterDiv>
-          <Image src={image.file.url} alt={image.alt} height="32px" width="115px"/>
+          <Image src={logo.image.fluid.src} alt={logo.alt} height="32px" width="115px"/>
           <Div>
             <FooterIconLink href={twitterLink} icon={Twitter} />
             <FooterIconLink href={facebookLink} icon={Facebook} />
@@ -28,13 +28,13 @@ const FooterStructure = ({ logo: { image }, dataFooter: { twitterLink, facebookL
     <BorderBottom hasMarginBottom={false}>
       <Container>
         <ListCategories>
-          {map(categories, ({name, footerLinks}) => 
-            <Div di="f" fd="c">
-              <FooterCategoriesTitle disabled={false} href={footerLinks} mode="link" size="big" target="_self">
+          {map(categories, ({id, name, footerLinks}) => 
+            <Div di="f" fd="c" key={id}>
+              <FooterCategoriesTitle disabled={false} size="big">
                 {name}
               </FooterCategoriesTitle>
-              {map(footerLinks, ({name, link}) =>
-                <FooterLink disabled={false} href={link} mode="link" size="small" target="_self">
+              {map(footerLinks, ({id, name, link}) =>
+                <FooterLink key={id} disabled={false} href={link} mode="link" size="small" target="_self">
                   {name}
                 </FooterLink>
               )}
@@ -47,17 +47,17 @@ const FooterStructure = ({ logo: { image }, dataFooter: { twitterLink, facebookL
       <FooterDiv>
         <p>{allRights.content[0].content[0].value}</p>
         <div>
-          <LinkWithColor href={gdprCompliance}>
-            GDPR Compliance
+          <LinkWithColor href={gdprCompliance.url}>
+            {gdprCompliance.name}
           </LinkWithColor>
-          <LinkWithColor href={acceptableUsePolicy}>
-            Acceptable Use Policy
+          <LinkWithColor href={acceptableUsePolicy.url}>
+            {acceptableUsePolicy.name}
           </LinkWithColor>
-          <LinkWithColor href={termsOfService}>
-            Terms of Service
+          <LinkWithColor href={termsOfService.url}>
+            {termsOfService.name}
           </LinkWithColor>
-          <LinkWithColor href={privatePolicy}>
-            Privacy Policy
+          <LinkWithColor href={privatePolicy.url}>
+            {privatePolicy.name}
           </LinkWithColor>
         </div>
       </FooterDiv>
@@ -69,42 +69,58 @@ const Footer = (props) =>
     <StaticQuery
       query =  {graphql`
         query {
-          contentfulImage(name: {eq: "mailgun-logo"}) {
-            image {
-              file {
+          contentfulFooterGlobal {
+            footer {
+              logo {
+                alt
+                image {
+                  fluid(toFormat: WEBP) {
+                    src
+                  }
+                }
+              }
+              twitterLink
+              facebookLink
+              gitHubLink
+              linkedinLink
+              contactEmail
+              categories {
+                id
+                name
+                footerLinks {
+                  id
+                  name
+                  link
+                }
+              }
+              allRights {
+                content {
+                  content {
+                    value
+                  }
+                }
+              }
+              gdprCompliance {
+                name
+                url
+              }
+              acceptableUsePolicy {
+                name
+                url
+              }
+              termsOfService {
+                name
+                url
+              }
+              privatePolicy {
+                name
                 url
               }
             }
-            alt
-          }
-          contentfulFooter {
-            twitterLink
-            facebookLink
-            gitHubLink
-            linkedinLink
-            contactEmail
-            categories {
-              name
-              footerLinks {
-                name
-                link
-              }
-            }
-            allRights {
-              content {
-                content {
-                  value
-                }
-              }
-            }
-            gdprCompliance
-            acceptableUsePolicy
-            termsOfService
-            privatePolicy
           }
         }
       `}
-      render={data => <FooterStructure logo={data.contentfulImage} dataFooter={data.contentfulFooter} {...props} />}
+      render={data => <FooterStructure data={data.contentfulFooterGlobal.footer} {...props} />}
     />
 
 export default Footer;

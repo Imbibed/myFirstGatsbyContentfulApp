@@ -2,14 +2,16 @@ import React from 'react';
 import { graphql, Link } from 'gatsby';
 import { map } from 'lodash';
 import { Image } from 'mailjet-react-components';
+import { useIntl } from "gatsby-plugin-intl";
 import { DataCell, Table, TitleCell } from "../styles/index";
 
-function MargotPage(props) {
-  const pastries = props.data.allContentfulBakery.edges;
+const MargotPage = ({data}) => {
+  const pastries = data.allContentfulBakery.edges;
+  const intl = useIntl();
 
   return (
     <>
-      <h2>La page de Margot !</h2>
+      <h2>{intl.formatMessage({id: "margotpage_title"})}</h2>
       <Table>
         <thead>
           <tr key="head">

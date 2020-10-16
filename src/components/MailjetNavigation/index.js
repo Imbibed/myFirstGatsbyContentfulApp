@@ -45,7 +45,7 @@ const MailjetNavigation = ({children}) => {
                 <Menu.OptionsPanel key={'MenuOptionsPanel'+id} alignOptions="left">
                   {map(buttons, ({label, path, id}) => 
                     <Menu.Option key={'MenuOption'+id} onClick={() => navigate('/'+path+'/')}>
-                      {label}
+                      <Body2>{label}</Body2>
                     </Menu.Option>
                   )}
                 </Menu.OptionsPanel>
@@ -97,14 +97,12 @@ const MailjetNavigation = ({children}) => {
                     return (
                       <Option 
                         key={language} 
-                        iconName={languageTable[language].icon} 
-                        readOnly
+                        iconName={languageTable[language].icon}
                         onClick={() => changeLocale(language)}>
                           {languageTable[language].name}
                       </Option>
                     )
-                  })
-                  }
+                  })}
                 </Menu.OptionsPanel>
               </Menu>
             </Div>
