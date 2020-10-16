@@ -5,4 +5,4 @@ export const getLanguageTable = () => {
   return {en: {name: 'English', contentfulName: 'en-US', icon: StyledEnglishFlag}, fr: {name: 'Français', contentfulName: 'fr', icon: StyledFrenchFlag}}
 }
 
-export const languages = Object.keys(getLanguageTable);
+export const languages = Object.keys(getLanguageTable());
