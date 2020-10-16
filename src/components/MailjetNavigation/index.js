@@ -20,7 +20,7 @@ const Option = ({ children, iconName: Icon, ...rest }) => (
 
 const MailjetNavigation = ({children}) => {
 
-  var currentLang = children.props;
+  const currentLang = children.props;
   const languageTable = getLanguageTable();
   //  Retrieve all multilangual data from contentful for the navbar
   const navbarData = useStaticQuery(leftSideQuery);
@@ -64,7 +64,7 @@ const MailjetNavigation = ({children}) => {
     )
   })
   
-  var setIconButtonIcon = () => {
+  const setIconButtonIcon = () => {
     let i;
     for(i=0;i<Object.keys(languageTable).length;i++){
       if(currentLang.locale === Object.keys(languageTable)[i].toString()){
