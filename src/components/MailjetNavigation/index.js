@@ -7,7 +7,7 @@ import {ShadowDiv} from './styles/ShadowDiv'
 import {Button, Menu, Body2, Div, Image, Container} from 'mailjet-react-components'
 import {ExtMJButton, ExtMJMenuButton} from './styles/MJComponent'
 import { map, find } from 'lodash'
-import { changeLocale } from "gatsby-plugin-intl"
+import { changeLocale, useIntl } from "gatsby-plugin-intl"
 import {getLanguageTable, languages} from '../../Utils/TranslationService'
 import {CONTENT_TYPE} from '../../Utils/ContentfulObjectsMappingTable'
 
@@ -18,18 +18,16 @@ const Option = ({ children, iconName: Icon, ...rest }) => (
   </Menu.Option>
 )
 
-const MailjetNavigation = ({children}) => {
-
-  const currentLang = children.props;
+const MailjetNavigation = () => {
+  const {language: currentLang} = useIntl()
   const languageTable = getLanguageTable();
   //  Retrieve all multilangual data from contentful for the navbar
   const navbarData = useStaticQuery(leftSideQuery);
 
   //  Then filter dynamicaly with the current language selected by user
   const translatedNavbarData = find(navbarData.allContentfulNavBarGlobal.edges, (edge) => {
-    return edge.node.node_locale === languageTable[currentLang.locale].contentfulName;
+    return edge.node.node_locale === languageTable[currentLang].contentfulName;
   })
-  
   //  Then get wanted data in the navigation bar object
   const {logo} = translatedNavbarData.node.navbar;
   //  This have to be handle by contentful within create path field in the navbar logo object
@@ -67,14 +65,13 @@ const MailjetNavigation = ({children}) => {
   const setIconButtonIcon = () => {
     let i;
     for(i=0;i<Object.keys(languageTable).length;i++){
-      if(currentLang.locale === Object.keys(languageTable)[i].toString()){
+      if(currentLang === Object.keys(languageTable)[i].toString()){
         return languageTable[Object.keys(languageTable)[i]].icon;
       }
     }
   }
 
   return(
-    <>
       <ShadowDiv>
         <Container>
           <MailjetNavigationContainer>
@@ -98,8 +95,7 @@ const MailjetNavigation = ({children}) => {
                     return (
                       <Option 
                         key={language} 
-                        iconName={languageTable[language].icon} 
-                        readOnly
+                        iconName={languageTable[language].icon}
                         onClick={() => changeLocale(language)}>
                           {languageTable[language].name}
                       </Option>
@@ -112,15 +108,8 @@ const MailjetNavigation = ({children}) => {
           </MailjetNavigationContainer>
         </Container>
       </ShadowDiv>
-      <section>
-        {children}
-      </section>
-    </>
   )
 }
-
-export default MailjetNavigation;
-
 const leftSideQuery = graphql`
   query MyMailjetNavigationQuery {
     allContentfulNavBarGlobal {
@@ -168,3 +157,5 @@ const leftSideQuery = graphql`
     }
   }
 `
+
+export default MailjetNavigation;
