@@ -8,8 +8,7 @@ import {Button, Menu, Body2, Div, Image, Container} from 'mailjet-react-componen
 import {ExtMJButton, ExtMJMenuButton} from './styles/MJComponent'
 import { map, find } from 'lodash'
 import { changeLocale } from "gatsby-plugin-intl"
-import {getLanguageTable, languages} from '../../Utils/TranslationService'
-import {CONTENT_TYPE} from '../../Utils/ContentfulObjectsMappingTable'
+import {getLanguageTable, languages, CONTENT_TYPE} from '../../Utils'
 
 const Option = ({ children, iconName: Icon, ...rest }) => (
   <Menu.Option {...rest}>
@@ -20,7 +19,7 @@ const Option = ({ children, iconName: Icon, ...rest }) => (
 
 const MailjetNavigation = ({children}) => {
 
-  var currentLang = children.props;
+  const currentLang = children.props;
   const languageTable = getLanguageTable();
   //  Retrieve all multilangual data from contentful for the navbar
   const navbarData = useStaticQuery(leftSideQuery);
@@ -64,7 +63,7 @@ const MailjetNavigation = ({children}) => {
     )
   })
   
-  var setIconButtonIcon = () => {
+  const setIconButtonIcon = () => {
     let i;
     for(i=0;i<Object.keys(languageTable).length;i++){
       if(currentLang.locale === Object.keys(languageTable)[i].toString()){
