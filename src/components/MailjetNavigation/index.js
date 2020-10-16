@@ -8,8 +8,7 @@ import {Button, Menu, Body2, Div, Image, Container} from 'mailjet-react-componen
 import {ExtMJButton, ExtMJMenuButton} from './styles/MJComponent'
 import { map, find } from 'lodash'
 import { changeLocale } from "gatsby-plugin-intl"
-import {getLanguageTable, languages} from '../../Utils/TranslationService'
-import {CONTENT_TYPE} from '../../Utils/ContentfulObjectsMappingTable'
+import {getLanguageTable, languages, CONTENT_TYPE} from '../../Utils'
 
 const Option = ({ children, iconName: Icon, ...rest }) => (
   <Menu.Option {...rest}>
