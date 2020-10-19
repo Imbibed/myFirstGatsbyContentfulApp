@@ -3,6 +3,7 @@ import { graphql, Link } from 'gatsby';
 import { map } from 'lodash';
 import { Image } from 'mailjet-react-components';
 import { useIntl } from "gatsby-plugin-intl";
+
 import { DataCell, Table, TitleCell } from "../styles/index";
 
 const MargotPage = ({data}) => {
@@ -32,7 +33,7 @@ const MargotPage = ({data}) => {
               <DataCell scope="row">{nationality}</DataCell>
               <DataCell scope="row">{isCold ? "Cold" : "Warm"}</DataCell>
               <DataCell scope="row">
-                <Image src={picture.image.file.url} alt={picture.image.alt} height="100px" width="150px"/>
+                <Image src={picture.image.fluid.src} alt={picture.alt} height="100px" width="150px"/>
               </DataCell>
             </tr>
           )}
@@ -56,8 +57,8 @@ query MargotQuery {
         isCold
         picture {
           image {
-            file {
-              url
+            fluid(toFormat: WEBP) {
+              src
             }
           }
           alt

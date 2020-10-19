@@ -1,11 +1,5 @@
 import React from 'react';
 
-function RootIndex(props){
-  return (
-    <>
-      <p>Index</p>
-    </>
-  )
-}
+const RootIndex = () => <p>Index</p>
 
 export default RootIndex;
