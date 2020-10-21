@@ -62,12 +62,14 @@ module.exports = {
       },
     },
     {
+      //  For this plugin we have to take care about data consistency, here: languages, defaultLanguage have to be equivalent to
+      //  Gatsby-node.js LangMapping variable and Utils/TranslationHelpers.js exported variables.
       resolve: 'gatsby-plugin-intl',
       options: {
         path: `${__dirname}/src/intl`,
         languages: ['en', 'fr'],
         defaultLanguage: 'en',
-        redirect: true
+        redirect: false
       }
     }
   ],

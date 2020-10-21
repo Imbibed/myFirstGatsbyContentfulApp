@@ -14,11 +14,11 @@ import { BorderBottom, FooterDiv, CustomFooter,FooterCategoriesTitle, FooterLink
 const FooterStructure = ({ data }) => {
   const languageTable = getLanguageTable();
   const currentLang = languageTable[useIntl().language].contentfulName;
-
+  
   const footer = find(data, (footers) => {
-    return footers.node.footer.node_locale == currentLang;
-  }).node.footer;
-
+    return footers.node.translatedObject.node_locale == currentLang;
+  }).node.translatedObject;
+  
   return (
     <CustomFooter>
       <BorderBottom hasMarginBottom={true}>
@@ -79,55 +79,61 @@ const Footer = (props) =>
   <StaticQuery
     query =  {graphql`
       query {
-        allContentfulFooterGlobal {
+        allContentfulTranslatedGroup(filter: {label: {eq: "FootersGroup"}}) {
           edges {
             node {
-              footer {
-                node_locale
-                logo {
-                  alt
-                  image {
-                    fluid(toFormat: WEBP) {
-                      src
-                    }
-                  }
-                }
-                twitterLink
-                facebookLink
-                gitHubLink
-                linkedinLink
-                contactEmail
-                categories {
+              label
+              node_locale
+              translatedObject {
+                ... on ContentfulFooterLocal {
                   id
                   name
-                  footerLinks {
-                    id
-                    name
-                    link
-                  }
-                }
-                allRights {
-                  content {
-                    content {
-                      value
-                    }
-                  }
-                }
-                gdprCompliance {
-                  name
-                  url
-                }
-                acceptableUsePolicy {
-                  name
-                  url
-                }
-                termsOfService {
-                  name
-                  url
-                }
-                privatePolicy {
-                  name
-                  url
+                  node_locale
+                  logo {
+                        alt
+                        image {
+                          fluid(toFormat: WEBP) {
+                            src
+                          }
+                        }
+                      }
+                      twitterLink
+                      facebookLink
+                      gitHubLink
+                      linkedinLink
+                      contactEmail
+                      categories {
+                        id
+                        name
+                        footerLinks {
+                          id
+                          name
+                          link
+                        }
+                      }
+                      allRights {
+                        content {
+                          content {
+                            value
+                          }
+                        }
+                      }
+                      gdprCompliance {
+                        name
+                        url
+                      }
+                      acceptableUsePolicy {
+                        name
+                        url
+                      }
+                      termsOfService {
+                        name
+                        url
+                      }
+                      privatePolicy {
+                        name
+                        url
+                      }
                 }
               }
             }
@@ -135,7 +141,7 @@ const Footer = (props) =>
         }
       }
     `}
-    render={data => <FooterStructure data={data.allContentfulFooterGlobal.edges} {...props} />}
+    render={data => <FooterStructure data={data.allContentfulTranslatedGroup.edges} {...props} />}
   />
 
 export default Footer;
