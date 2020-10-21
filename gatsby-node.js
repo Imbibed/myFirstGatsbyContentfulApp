@@ -141,7 +141,7 @@ exports.createPages = async ({graphql, actions, reporter}) => {
     })
   })
 
-  /*result.data.allContentfulPlayerPage.edges.forEach(({ node }) => {
+  result.data.allContentfulPlayerPage.edges.forEach(({ node }) => {
     const path = node.playerName+'-detailpage';
     createPage({
       path: '/'+path+'/',
@@ -155,10 +155,10 @@ exports.createPages = async ({graphql, actions, reporter}) => {
         local: node.node_locale
       },
     })
-  })*/
+  })
 
   // Create pages of bakery
-  /*result.data.allContentfulBakery.edges.forEach(({ node }) => {
+  result.data.allContentfulBakery.edges.forEach(({ node }) => {
     createPage({
       path: node.id,
       component: path.resolve('./src/templates/margottemplate.js'),
@@ -167,9 +167,9 @@ exports.createPages = async ({graphql, actions, reporter}) => {
         locale: "en-US"
       },
     })
-  })*/
+  })
   
-  /*result.data.allContentfulAnimalsGlobal.edges.forEach(({node}) => {
+  result.data.allContentfulAnimalsGlobal.edges.forEach(({node}) => {
     createPage({
       path: node.name+'-page',
       component: path.resolve('./src/templates/animalsTemplate.js'),
@@ -179,7 +179,7 @@ exports.createPages = async ({graphql, actions, reporter}) => {
         lang: node.animalLocal.node_locale
       }
     })
-  })*/
+  })
 
 
 }
