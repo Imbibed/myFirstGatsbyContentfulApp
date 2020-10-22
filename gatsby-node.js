@@ -1,5 +1,7 @@
 const path = require('path');
 
+//  This variable have to be equivalent to gatsby-plugin-intl config 
+//  in gatsby-config.js file
 const LangMapping = {
   fr: 'fr',
   en: 'en-US'
@@ -16,7 +18,7 @@ const getISOLang = (intlLang) => {
 exports.onCreatePage = ({page, actions}) => {
   const {createPage, deletePage} = actions;
   deletePage(page);
-  
+
   createPage({
     ...page,
     context: {
@@ -86,6 +88,37 @@ exports.createPages = async ({graphql, actions, reporter}) => {
           }
         }
       }
+      allContentfulTranslatedGroup(filter: {label: {eq: "HomePagesGroup"}}) {
+        edges {
+          node {
+            label
+            node_locale
+            translatedObject {
+              ... on ContentfulPage {
+                id
+                seoTitle
+                seoDescription
+                slug
+                body {
+                  label
+                  pageTitle
+                  references {
+                    name
+                    title
+                    text {
+                      content {
+                        content {
+                          value
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   `
   )
@@ -96,14 +129,23 @@ exports.createPages = async ({graphql, actions, reporter}) => {
     return
   }
 
-  // Create pages for each markdown file.
-  const meleePlayerDetailsTemplate = path.resolve(`src/templates/template.js`)
+  result.data.allContentfulTranslatedGroup.edges.forEach(({node}) => {
+    console.log(node)
+    createPage({
+      path: "/" + node.translatedObject.slug,
+      component: path.resolve(`src/templates/homeTemplate.js`),
+      context: {
+        contentfulLang: node.node_locale,
+        data: node.translatedObject
+      }
+    })
+  })
 
   result.data.allContentfulPlayerPage.edges.forEach(({ node }) => {
     const path = node.playerName+'-detailpage';
     createPage({
       path: '/'+path+'/',
-      component: meleePlayerDetailsTemplate,
+      component: path.resolve(`src/templates/template.js`),
       context: {
         playerName: node.playerName,
         birthday: node.birthDay,

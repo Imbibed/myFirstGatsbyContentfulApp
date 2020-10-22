@@ -1,5 +1,8 @@
 import React from 'react';
 
-const RootIndex = () => <p>Index</p>
+const RootIndex = () => 
+  <section>
+    <p>Index</p>
+  </section>
 
 export default RootIndex;

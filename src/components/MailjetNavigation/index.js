@@ -22,19 +22,19 @@ const MailjetNavigation = () => {
   const languageTable = getLanguageTable();
   //  Retrieve all multilangual data from contentful for the navbar
   const navbarData = useStaticQuery(leftSideQuery);
-
+  
   //  Then filter dynamicaly with the current language selected by user
-  const translatedNavbarData = find(navbarData.allContentfulNavBarGlobal.edges, (edge) => {
+  const translatedNavbarData = find(navbarData.allContentfulTranslatedGroup.edges, (edge) => {
     return edge.node.node_locale === languageTable[currentLang].contentfulName;
   })
   //  Then get wanted data in the navigation bar object
-  const {logo} = translatedNavbarData.node.navbar;
+  const {logo} = translatedNavbarData.node.translatedObject;
   //  This have to be handle by contentful within create path field in the navbar logo object
   logo["path"]="/";
 
-  const {leftContent: leftSideContent, rigthContent: rightSideContent} = translatedNavbarData.node.navbar;
+  const {leftContent: leftSideContent, rigthContent: rightSideContent} = translatedNavbarData.node.translatedObject;
   
-  const {cta} = translatedNavbarData.node.navbar;
+  const {cta} = translatedNavbarData.node.translatedObject;
 
   const JSXLeftSideContent = map(leftSideContent, ({label, buttons, id, __typename, path}) => {
     if(__typename === CONTENT_TYPE.NAVBAR_DROPDOWN){
@@ -110,44 +110,46 @@ const MailjetNavigation = () => {
 }
 const leftSideQuery = graphql`
   query MyMailjetNavigationQuery {
-    allContentfulNavBarGlobal {
+    allContentfulTranslatedGroup(filter: {label: {eq: "NavbarsGroup"}}) {
       edges {
         node {
-          name
+          label
           node_locale
-          navbar {
-            id
-            cta {
-              label
-              path
-            }
-            leftContent {
-              ... on ContentfulNavBarButton {
-                id
+          translatedObject {
+            ... on ContentfulNavbar {
+              id
+              cta {
                 label
                 path
               }
-              ... on ContentfulNavBarDropDown {
-                id
-                label
-                buttons {
+              leftContent {
+                ... on ContentfulNavBarButton {
                   id
                   label
                   path
                 }
-              }
-            }
-            logo {
-              image {
-                file {
-                  url
+                ... on ContentfulNavBarDropDown {
+                  id
+                  label
+                  buttons {
+                    id
+                    label
+                    path
+                  }
                 }
               }
-            }
-            rigthContent {
-              id
-              label
-              path
+              logo {
+                image {
+                  file {
+                    url
+                  }
+                }
+              }
+              rigthContent {
+                id
+                label
+                path
+              }
             }
           }
         }
