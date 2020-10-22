@@ -2,9 +2,11 @@ import React from 'react';
 import { graphql, Link } from 'gatsby';
 import { map } from 'lodash';
 import { Image } from 'mailjet-react-components';
+import { ChevronLeft, ChevronRight } from 'mailjet-react-components/icons';
 import { useIntl } from "gatsby-plugin-intl";
 
 import { DataCell, Table, TitleCell } from "../styles/index";
+import Carousel from "../components/Carousel";
 
 const MargotPage = ({data}) => {
   const pastries = data.allContentfulBakery.edges;
@@ -13,6 +15,21 @@ const MargotPage = ({data}) => {
   return (
     <>
       <h2>{intl.formatMessage({id: "margotpage_title"})}</h2>
+      <Carousel elementDisplay={2}>
+        <Carousel.LeftIcon>
+          <ChevronLeft />
+        </Carousel.LeftIcon>
+        <Carousel.Elements>
+          {map(pastries, ({node: {picture}}) =>
+            <Carousel.Element key={picture.image.id}>
+              <Image src={picture.image.fluid.src} alt={picture.alt} key={picture.image.id} height="200px" width="250px"/>
+            </Carousel.Element>
+          )}
+        </Carousel.Elements>
+        <Carousel.RightIcon>
+          <ChevronRight />
+        </Carousel.RightIcon>
+      </Carousel>
       <Table>
         <thead>
           <tr key="head">
@@ -60,6 +77,7 @@ query MargotQuery {
             fluid(toFormat: WEBP) {
               src
             }
+            id
           }
           alt
         }

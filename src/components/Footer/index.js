@@ -8,7 +8,7 @@ import { useIntl } from "gatsby-plugin-intl"
 import FooterIconLink from './components/FooterIconLink';
 import LinkWithColor from './components/LinkWithColor';
 import { getLanguageTable } from '../../Utils'
-import { BorderBottom, FooterDiv, CustomFooter,FooterCategoriesTitle, FooterLink,
+import { BorderBottom, FooterDiv, CustomFooter, FooterCategoriesTitle, FooterLink,
     ListCategories } from './styles';
 
 const FooterStructure = ({ data }) => {
