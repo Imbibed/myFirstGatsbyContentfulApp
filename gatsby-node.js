@@ -1,4 +1,3 @@
-const { create } = require('lodash');
 const path = require('path');
 
 const LangMapping = {
