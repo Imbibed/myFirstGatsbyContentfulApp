@@ -18,14 +18,15 @@ const getISOLang = (intlLang) => {
 exports.onCreatePage = ({page, actions}) => {
   const {createPage, deletePage} = actions;
   deletePage(page);
-
-  createPage({
-    ...page,
-    context: {
-      ...page.context,
-      lang: getISOLang(page.context.intl.language),
-    },
-  })
+  
+    createPage({
+      ...page,
+      context: {
+        ...page.context,
+        lang: getISOLang(page.context.intl.language),
+      },
+    })
+  
 }
 
 exports.createPages = async ({graphql, actions, reporter}) => {
@@ -130,7 +131,7 @@ exports.createPages = async ({graphql, actions, reporter}) => {
   }
 
   result.data.allContentfulTranslatedGroup.edges.forEach(({node}) => {
-    console.log(node)
+    
     createPage({
       path: "/" + node.translatedObject.slug,
       component: path.resolve(`src/templates/homeTemplate.js`),
@@ -142,9 +143,8 @@ exports.createPages = async ({graphql, actions, reporter}) => {
   })
 
   result.data.allContentfulPlayerPage.edges.forEach(({ node }) => {
-    const path = node.playerName+'-detailpage';
     createPage({
-      path: '/'+path+'/',
+      path: '/'+ node.playerName+'-detailpage' +'/',
       component: path.resolve(`src/templates/template.js`),
       context: {
         playerName: node.playerName,
