@@ -1,12 +1,12 @@
-import { styledForTabletAndMobile, styledForMobile, styledForDesktop,
-styledForTablet} from './BreakpointsHelpers';
+import { styleForTabletAndMobile, styleForMobile, styleForDesktop,
+styleForTablet} from './BreakpointsHelpers';
 import { getLanguageTable, languages } from './TranslationHelpers';
 import {CONTENT_TYPE} from './ContentfulObjectsMappingTable'
 
-export { styledForTabletAndMobile, 
-  styledForMobile, 
-  styledForDesktop, 
-  styledForTablet, 
+export { styleForTabletAndMobile, 
+  styleForMobile, 
+  styleForDesktop, 
+  styleForTablet, 
   getLanguageTable,
   languages,
   CONTENT_TYPE}

@@ -36,6 +36,7 @@ const customTheme = {
     small: '14px',
     medium: '20px',
     large: '32px',
+    s29: '29px'
   },
 }
 

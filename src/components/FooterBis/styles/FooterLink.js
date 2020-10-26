@@ -1,21 +1,29 @@
 import styled from 'styled-components';
 import { Link } from 'mailjet-react-components';
-import { styledForMobile } from '../../../Utils';
 
 const FooterLink = styled(Link)`
   text-decoration: none;
-  color: ${({theme}) => theme.colors.neutral._80};
-  font-family: "Roboto";
-  font-weight: 400;
-  font-size: ${({theme}) => theme.sizes.s12};
-  margin-right: ${({theme}) => theme.sizes.s18};
-  &&:hover {
-    color: ${({theme}) => theme.colors.neutral._60};
+
+  &&:not(:last-child) {
+    margin-right: ${({theme}) => theme.sizes.s5};
   }
 
-  ${styledForMobile} {
-    margin-right: 0px;
+  &&:hover {
+    text-decoration: underline;
+    color: ${({theme}) => theme.colors.neutral._80};
   }
+
+  && > * {
+    color: ${({theme}) => theme.colors.neutral._80};
+    font-family: "Roboto Regular";
+    font-size: ${({theme}) => theme.sizes.s12};
+    font-weight: 400;
+    line-height: ${({theme}) => theme.sizes.s5};
+    text-align: right;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }  
+
 `
 
 export default FooterLink;

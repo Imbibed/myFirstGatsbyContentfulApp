@@ -1,17 +1,21 @@
 import styled from 'styled-components'
-import { styledForTabletAndMobile, styledForMobile } from '../../../Utils';
+import { styleForTabletAndMobile, styleForMobile, styleForTablet } from '../../../Utils';
 
 const DivRight = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  ${styledForTabletAndMobile} {
+  ${styleForTablet} {
+    align-items: flex-end;
+  }
+
+  ${styleForTabletAndMobile} {
     flex-direction: column;
   }
 
-  ${styledForMobile} {
-    padding-top: ${({theme}) => theme.sizes.s5};
+  ${styleForMobile} {
+    padding-top: ${({theme}) => theme.sizes.s6};
   }
 `;
 

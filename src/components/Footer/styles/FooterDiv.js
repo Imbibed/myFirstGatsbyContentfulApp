@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { styledForTabletAndMobile } from '../../../Utils';
+import { styleForTabletAndMobile } from '../../../Utils';
 
 const FooterDiv = styled.div`
   display: flex;
@@ -8,7 +8,7 @@ const FooterDiv = styled.div`
   align-items: center;
   padding: ${({theme}) => theme.sizes.s6} ${({theme}) => theme.sizes.s13};
 
-  ${styledForTabletAndMobile} {
+  ${styleForTabletAndMobile} {
     flex-direction: column;
   }
 `;

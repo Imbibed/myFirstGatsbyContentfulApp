@@ -1,16 +1,16 @@
 import styled from 'styled-components'
-import { styledForMobile, styledForTablet } from '../../../Utils';
+import { styleForMobile, styleForTablet } from '../../../Utils';
 
 const DivContent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  ${styledForTablet} {
+  ${styleForTablet} {
     align-items: stretch;
   };
 
-  ${styledForMobile} {
+  ${styleForMobile} {
     flex-direction: column;
     justify-content: center;
   };

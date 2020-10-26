@@ -1,11 +1,11 @@
 import React from "react";
 import { graphql, StaticQuery } from 'gatsby';
 import { useIntl } from "gatsby-plugin-intl";
-import { Container, Div } from "mailjet-react-components";
+import { Container, Div, Caption } from "mailjet-react-components";
 import { map, find } from "lodash";
 
 import { getLanguageTable } from '../../Utils';
-import { CustomFooter, FooterLink, LightText, ImageMargin, DivRight, DivContent, DivWidth } from "./styles";
+import { CustomFooter, FooterLink, LightCaption, ImageMargin, DivRight, DivContent } from "./styles";
 import theme from '../../theme';
 
 const FooterStructure = ({ data }) => {
@@ -23,7 +23,7 @@ const FooterStructure = ({ data }) => {
       <Container>
         <DivContent>
           <Div>
-            <ImageMargin src={footer.logo.image.fluid.src} alt={footer.logo.alt} maxHeight="24px" maxWidth="116px"/>
+            <ImageMargin src={footer.logo.image.fluid.src} alt={footer.logo.alt} maxHeight="24px" maxWidth="115px"/>
             <a href={mailjet_logo.url} key={mailjet_logo.id}>
               <ImageMargin 
                 src={mailjet_logo.image.image.fluid.src} 
@@ -38,17 +38,17 @@ const FooterStructure = ({ data }) => {
             </a>
           </Div>
           <DivRight>
-            <DivWidth di="f" jc="sb" width="110%">
+            <Div di="f" jc="sb">
               {map(footer.linkRight, ({id, url, textContent}) => 
-                <FooterLink key={id} disabled={false} href={url} mode="link" size="small" target="_self">
-                  {textContent}
+                <FooterLink key={id} to={url}>
+                  <Caption>{textContent}</Caption>
                 </FooterLink>
               )}
-            </DivWidth>
+            </Div>
             <Div>
-              <LightText>
+              <LightCaption>
               {footer.copyright.content[0].content[0].value}
-              </LightText>
+              </LightCaption>
             </Div>
           </DivRight>
         </DivContent>

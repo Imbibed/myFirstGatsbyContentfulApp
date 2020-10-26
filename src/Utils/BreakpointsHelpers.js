@@ -1,10 +1,12 @@
 import Breakpoints from '../theme/Breakpoints';
 
-const styledForTabletAndMobile = () => `@media screen and (max-width: ${Breakpoints.tablet.containerMaxWidth})`;
-const styledForMobile = () => `@media screen and (max-width: ${Breakpoints.mobile.containerMaxWidth})`;
-const styledForDesktop = () => 
-`@media screen and (min-width: ${Breakpoints.desktop.breakpoint}px)`;
-const styledForTablet = () => 
-`@media screen and (min-width: ${Breakpoints.tablet.breakpoint}px) and (max-width: ${Breakpoints.tablet.containerMaxWidth})`;
-
-export { styledForTabletAndMobile, styledForMobile, styledForDesktop, styledForTablet};
+const styleForTabletAndMobile = () => 
+  `@media screen and (max-width: ${Breakpoints.tablet.maxBreakpoint}px)`;
+const styleForMobile = () => 
+  `@media screen and (max-width: ${Breakpoints.mobile.maxBreakpoint}px)`;
+const styleForTablet = () =>
+  `@media screen and (min-width: ${Breakpoints.tablet.breakpoint}px) and (max-width: ${Breakpoints.tablet.containerMaxWidth}px)`;
+const styleForDesktop = () =>
+  `@media screen and (min-width: ${Breakpoints.desktop.breakpoint}px)`;
+  
+export { styleForTabletAndMobile, styleForMobile, styleForTablet, styleForDesktop };
