@@ -12,7 +12,7 @@ import {RawIntlProvider} from "gatsby-plugin-intl";
 
 import Navbar from "../MailjetNavigation"
 import theme from '../../theme'
-import Footer from "../Footer";
+import FooterBis from "../FooterBis";
 
 const Layout = ({children, pageContext }) => {
   // Get intl state from pageContext
@@ -24,7 +24,7 @@ const Layout = ({children, pageContext }) => {
       <Navbar/>
       <div>
         <main>{children}</main>
-        <Footer />
+        <FooterBis />
       </div>
       </RawIntlProvider>
     </ThemePartialProvider>
