@@ -1,4 +1,5 @@
 import React from 'react';
+import { graphql } from 'gatsby';
 import { Container404 } from "../styles/index";
 import { Image, Header2, Header3 } from 'mailjet-react-components';
 

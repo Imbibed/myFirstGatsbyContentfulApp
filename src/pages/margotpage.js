@@ -7,9 +7,12 @@ import { useIntl } from "gatsby-plugin-intl";
 
 import { DataCell, Table, TitleCell } from "../styles/index";
 import Carousel from "../components/Carousel";
+import Slider from "../components/Slider";
 
 const MargotPage = ({data}) => {
   const pastries = data.allContentfulBakery.edges;
+  const images = [];
+  {map(pastries, ({node: {picture}}) => images.push(picture.image.fluid.src))}
   const intl = useIntl();
 
   return (
@@ -30,6 +33,7 @@ const MargotPage = ({data}) => {
           <ChevronRight />
         </Carousel.RightIcon>
       </Carousel>
+      <Slider width={500} height={200} elementDisplay={2} slides={images}/>
       <Table>
         <thead>
           <tr key="head">
